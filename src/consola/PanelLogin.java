@@ -123,6 +123,9 @@ public class PanelLogin extends JPanel implements ActionListener{
 			else if(usuario.equalsIgnoreCase("Cliente")) {
 				interfazPrincipal.dispose();
 				interfazPrincipal.interfazCliente(jTextFieldUsuario.getText(), jTextFieldContrasenia.getText());
+			}else if(usuario.equalsIgnoreCase("Empleado")) {
+				interfazPrincipal.dispose();
+				interfazPrincipal.interfazEmpleado(jTextFieldUsuario.getText(),jTextFieldContrasenia.getText());
 			}
 		}
 		

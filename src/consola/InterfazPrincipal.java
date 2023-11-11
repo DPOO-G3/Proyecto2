@@ -22,6 +22,7 @@ import javax.swing.border.Border;
 
 import logica.AdministradorLocal;
 import logica.Cliente;
+import logica.Empleado;
 import logica.Vehiculo;
 
 
@@ -32,6 +33,7 @@ public class InterfazPrincipal extends JFrame {
 	private InterfazRegistrarVehiculo interfazRegistrarVehiculo;
 	private PanelAdminLocal panelAdminLocal;
 	private PanelCliente panelCliente;
+	private PanelEmpleado panelEmpleado;
 
 	
 
@@ -138,6 +140,20 @@ public class InterfazPrincipal extends JFrame {
 		
 	}
 	
+	public void interfazEmpleado(String usuario , String contransenia) {
+		Empleado empleado = empresaAlquilerVehiculos.buscarEmpleadoPorLogin(usuario, contransenia);
+		panelEmpleado = new PanelEmpleado(this,empleado);
+		JFrame  JframeAdminLocal = new JFrame();
+		JframeAdminLocal.setLocationRelativeTo(null);
+		
+		JframeAdminLocal.setVisible(true);
+		JframeAdminLocal.add(panelEmpleado);
+		JframeAdminLocal.setResizable(false);
+		JframeAdminLocal.setSize(600,350);
+		
+		
+	}
+	
 	public void interfazCliente(String usuario , String contransenia) {
 		Cliente cliente = empresaAlquilerVehiculos.buscarClientePorLogin(usuario, contransenia);
 		panelCliente = new PanelCliente(this,cliente.getNombre(),cliente.getUsuario(),cliente.getFechaNac());
@@ -159,5 +175,9 @@ public class InterfazPrincipal extends JFrame {
 		interfazRegistrarVehiculo = new InterfazRegistrarVehiculo(this);
 		interfazRegistrarVehiculo.setVisible(true);
 		
+	}
+
+	public ArrayList<Integer> listaCarros() {
+		return empresaAlquilerVehiculos.crearListaCarros();
 	}
 }

@@ -543,6 +543,16 @@ public static void main(String[] args) throws ParseException {
 	} return null;
  }
  
+ public Empleado buscarEmpleadoPorLogin(String usuario,String contrasenia) {
+	 Empleado EmpleadoEncontrado;
+	 for (Empleado EmpleadoLocal : listaEmpleados) {
+		if(EmpleadoLocal.getUsuario().equals(usuario)&& EmpleadoLocal.getContraseña().equals(contrasenia)) {
+			EmpleadoEncontrado = EmpleadoLocal;
+			return EmpleadoEncontrado;
+		}
+		} return null;
+	 }
+ 
  private void cargaPersistencia(Persistencia persistencia, EmpresaAlquilerVehiculos self) throws ParseException {
 	ArrayList<Cliente> listaClientesAux;
 	listaClientesAux = persistencia.cargarClientesAgregadosNuevos("./data/persistencia/clientes.txt\\");
@@ -646,5 +656,17 @@ public Vehiculo buscarAutoPorId(int ID)
 	}
 	return null;
 	}
+
+public ArrayList<Integer> crearListaCarros() {
+	
+	ArrayList<Integer> listaCar = new ArrayList<Integer>();
+	
+	for( Vehiculo carLocal: listaVehiculo) {
+		listaCar.add(carLocal.getIdVehiculo());
+	}
+	
+	return listaCar;
+	
+}
 
 }

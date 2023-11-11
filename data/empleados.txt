@@ -1,4 +1,4 @@
-ArmandoE;Bogota;empleadoL1;DPOO1;Empleado
+ArmandoE;Bogota;5;5;Empleado
 BellaE;Valledupar;empleadoL2;DPOO2;Empleado
 CamiloE;Cali;empleadoL3;DPOO3;Empleado
 DanielE;Medellin;empleadoL4;DPOO4;Empleado
