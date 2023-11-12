@@ -34,6 +34,9 @@ public class PanelCliente extends JPanel implements ActionListener{
 	private JButton botonAlquilar;
 	private InterfazRegistrarReservaCliente interfazRegistrarReservaCliente;
 	private InterfazRegistrarVehiculo interfazRegistrarVehiculo;
+	private String usuarioA;
+	private String contraseniaA;
+	
 	public PanelCliente(InterfazPrincipal interfazPrincipal, String nombre, String usuario, String fechaNac) {
 		this.interfazPrincipal = interfazPrincipal;
 		cargarImagen();
@@ -126,11 +129,11 @@ public class PanelCliente extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==botonReserva) {
-			 interfazRegistrarReservaCliente = new InterfazRegistrarReservaCliente(0);
+			 interfazRegistrarReservaCliente = new InterfazRegistrarReservaCliente(0,usuarioA,contraseniaA,interfazPrincipal);
 			 interfazRegistrarReservaCliente.setVisible(true);
 			
 		}else if (e.getSource()==botonAlquilar) {
-			interfazRegistrarReservaCliente = new InterfazRegistrarReservaCliente(1);
+			interfazRegistrarReservaCliente = new InterfazRegistrarReservaCliente(1,usuarioA,contraseniaA,interfazPrincipal);
 			interfazRegistrarReservaCliente.setVisible(true);
 		}
 	}

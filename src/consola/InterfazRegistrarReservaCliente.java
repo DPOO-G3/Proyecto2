@@ -31,9 +31,17 @@ public class InterfazRegistrarReservaCliente extends JFrame implements ActionLis
 	private JButton botonRegistrar ;
 	private PanelAuxLista panelLista;
 	public static LocalDate fechaActual;
+	public ArrayList<JTextField> listaJTextFields ;
+	public ArrayList<JLabel> listaLabels = new ArrayList<JLabel>();
+	private String usuarioA;
+	private String contraseniaA;
+	private InterfazPrincipal interfazPrincipal;
 	
-	public InterfazRegistrarReservaCliente(int tipo) {
+	public InterfazRegistrarReservaCliente(int tipo,String usuarioA, String contraseniaA,InterfazPrincipal interfazPrincipal) {
 		//setSize( 750, 600 );
+		this.usuarioA = usuarioA;
+		this.contraseniaA = contraseniaA;
+		this.interfazPrincipal = interfazPrincipal;
 		fechaActual = LocalDate.now();
 		setLayout(new BorderLayout());
 		setBackground(new Color(79,193,223));
@@ -46,7 +54,7 @@ public class InterfazRegistrarReservaCliente extends JFrame implements ActionLis
 		add(panelTitulo, BorderLayout.NORTH);
 		
 		//Panel Centro
-		panelLista = new PanelAuxLista(tipo);
+		panelLista = new PanelAuxLista(tipo,this);
 		LineBorder bordeCenter = new LineBorder(new Color(188, 192, 193));
         panelLista.setBorder(bordeCenter);
 		add(panelLista, BorderLayout.CENTER);
@@ -72,7 +80,52 @@ public class InterfazRegistrarReservaCliente extends JFrame implements ActionLis
 		
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		if(e.getSource()== botonRegistrar) {
+			String texto="";
+			String categoria="";
+			//int id=0;
+			String sedeR="";
+			String fechaI="";
+			String fechaF="";
+			String sedeD="";
+			for (int i = 0; i < listaJTextFields.size(); i++) {
+				
+				switch (i) {
+				
+				case 0: 
+					//Id
+					try {
+						categoria = listaJTextFields.get(i).getText();
+						break;
+					} catch (Exception e2) {
+						
+						JOptionPane.showMessageDialog(this, "No se pudo registrar la reserva", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+						break;
+					}
+					
+					
+				case 1:
+					sedeR = listaJTextFields.get(i).getText();
+					break;
+				case 2:
+					fechaI =listaJTextFields.get(i).getText();
+					break;
+				case 3:
+					fechaF = listaJTextFields.get(i).getText();
+					break;
+				case 4:
+					sedeD = listaJTextFields.get(i).getText();
+					break;
+				
+				default:
+					JOptionPane.showMessageDialog(null, "No se pudo registrar la reserva", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+			interfazPrincipal.realizarReserva(categoria, sedeR, fechaI, fechaF, sedeD,usuarioA,contraseniaA);
+			JOptionPane.showMessageDialog(this, "Vehiculo registrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+			this.dispose();
+		}
+	
 	}
 
 }

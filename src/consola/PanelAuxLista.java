@@ -23,32 +23,31 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 public class PanelAuxLista extends JPanel implements ActionListener {
-	private ArrayList<JTextField> listaJTextFields ;
-	private ArrayList<JLabel> listaLabels = new ArrayList<JLabel>();
+	//private ArrayList<JTextField> listaJTextFields ;
+	//private ArrayList<JLabel> listaLabels = new ArrayList<JLabel>();
 	
-	public PanelAuxLista(int tipo) {
+	public PanelAuxLista(int tipo,InterfazRegistrarReservaCliente iRegistroReservaCliente) {
 	
 	//setUndecorated(true); 
 	JPanel panelInterfaz = new JPanel();
 	panelInterfaz.setLayout(new GridBagLayout());
-	agregarLabel("Categoría", listaLabels);
-	agregarLabel("Sede a Recoger", listaLabels);
+	agregarLabel("Categoría", iRegistroReservaCliente.listaLabels);
+	agregarLabel("Sede a Recoger", iRegistroReservaCliente.listaLabels);
 	if (tipo==0) {
-	agregarLabel("Fecha Inicial", listaLabels);}
-	agregarLabel("Fecha Final", listaLabels);
-	agregarLabel("Sede a devolver", listaLabels);
+	agregarLabel("Fecha Inicial", iRegistroReservaCliente.listaLabels);}
+	agregarLabel("Fecha Final", iRegistroReservaCliente.listaLabels);
+	agregarLabel("Sede a devolver", iRegistroReservaCliente.listaLabels);
 
 	//Labels
 	if (tipo==0) {
-		listaJTextFields = crearJtextFieldsParaLabels(listaLabels, panelInterfaz,3,2);}
+		iRegistroReservaCliente.listaJTextFields = crearJtextFieldsParaLabels(iRegistroReservaCliente.listaLabels, panelInterfaz,3,2);}
 	else {
-		listaJTextFields = crearJtextFieldsParaLabels(listaLabels, panelInterfaz,2,2);
+		iRegistroReservaCliente.listaJTextFields = crearJtextFieldsParaLabels(iRegistroReservaCliente.listaLabels, panelInterfaz,2,2);
 	}
 	
 	setBackground(new Color(79,193,223));
 	panelInterfaz.setBackground(new Color(79,193,223));
 	add(panelInterfaz);
-	//getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
 	setSize(700,700);
 	//setResizable(false);
 	

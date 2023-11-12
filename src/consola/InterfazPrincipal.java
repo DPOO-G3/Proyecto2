@@ -180,4 +180,9 @@ public class InterfazPrincipal extends JFrame {
 	public ArrayList<Integer> listaCarros() {
 		return empresaAlquilerVehiculos.crearListaCarros();
 	}
+	
+	public void realizarReserva(String categoria, String sedeR, String fechaA, String fechaF, String sedeD, String usuario, String contrasenia )
+	{
+		empresaAlquilerVehiculos.CrearReserva(categoria, sedeR, fechaA, fechaF, sedeD, usuario, contrasenia);
+	}	
 }
