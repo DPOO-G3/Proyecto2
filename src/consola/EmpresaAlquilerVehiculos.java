@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+
 import logica.LicienciaConducion;
 import logica.AdministradorGeneral;
 import logica.AdministradorLocal;
@@ -37,6 +39,7 @@ public class EmpresaAlquilerVehiculos {
   private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
   private ArrayList<Seguro> seguros = new ArrayList<Seguro>();
   public static Integer numeroReservaInteger = 0 ;
+  
   
   
   public String ejecutarPrograma(String usuario, String contrasenia)  {

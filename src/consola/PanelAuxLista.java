@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -25,22 +26,24 @@ public class PanelAuxLista extends JPanel implements ActionListener {
 	private ArrayList<JTextField> listaJTextFields ;
 	private ArrayList<JLabel> listaLabels = new ArrayList<JLabel>();
 	
-	public PanelAuxLista(InterfazRegistrarReservaCliente interfaz) {
+	public PanelAuxLista(int tipo) {
 	
 	//setUndecorated(true); 
-	JPanel panelInterfaz =new JPanel();
+	JPanel panelInterfaz = new JPanel();
 	panelInterfaz.setLayout(new GridBagLayout());
 	agregarLabel("Categoría", listaLabels);
 	agregarLabel("Sede a Recoger", listaLabels);
-	agregarLabel("Fecha Inicial", listaLabels);
+	if (tipo==0) {
+	agregarLabel("Fecha Inicial", listaLabels);}
 	agregarLabel("Fecha Final", listaLabels);
 	agregarLabel("Sede a devolver", listaLabels);
-	//GridBagConstraints c  = new GridBagConstraints();
-	//c.gridx=1;
-	//c.gridy=0;
-	//c.insets = new Insets(10, 10, 10, 10);
-	//panelInterfaz.add(new JLabel("Ingrese la informacion de la reserva:"),c);
-	listaJTextFields = crearJtextFieldsParaLabels(listaLabels, panelInterfaz,3,2);
+
+	//Labels
+	if (tipo==0) {
+		listaJTextFields = crearJtextFieldsParaLabels(listaLabels, panelInterfaz,3,2);}
+	else {
+		listaJTextFields = crearJtextFieldsParaLabels(listaLabels, panelInterfaz,2,2);
+	}
 	
 	setBackground(new Color(79,193,223));
 	panelInterfaz.setBackground(new Color(79,193,223));

@@ -126,11 +126,11 @@ public class PanelCliente extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==botonReserva) {
-			 interfazRegistrarReservaCliente = new InterfazRegistrarReservaCliente(this);
+			 interfazRegistrarReservaCliente = new InterfazRegistrarReservaCliente(0);
 			 interfazRegistrarReservaCliente.setVisible(true);
 			
 		}else if (e.getSource()==botonAlquilar) {
-			interfazRegistrarReservaCliente = new InterfazRegistrarReservaCliente(this);
+			interfazRegistrarReservaCliente = new InterfazRegistrarReservaCliente(1);
 			interfazRegistrarReservaCliente.setVisible(true);
 		}
 	}
