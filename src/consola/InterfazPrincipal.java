@@ -182,19 +182,33 @@ public class InterfazPrincipal extends JFrame {
 		return empresaAlquilerVehiculos.crearListaCarros();
 	}
 	
-	public void buscarClienteYCrearReservaCliente()//Llenar con parametros mateo);
+	
+	public int buscarClienteYCrearReservaCliente(String categoria, String sedeRecoger, String fechaInicial, String fechaFinal, String sedeDevolver, String nombreCliente)//Llenar con parametros mateo);
 	{
-		//Pedir user y contraseña
-		//llamar funcion realizarReservaCliente()
+		
+		Cliente cliente = empresaAlquilerVehiculos.buscarClienteSistema(nombreCliente);
+		if(cliente == null) {
+			return 0;
+		}else {
+		String quienRealiza =  "Empleado";
+	    realizarReservaCliente(categoria,sedeRecoger, fechaInicial, fechaFinal, sedeDevolver, cliente.getUsuario(),cliente.getContraseña(),3 ,quienRealiza);
+		return 1; }
 	}
-	public void realizarReservaCliente(String categoria, String sedeR, String fechaA, String fechaF, String sedeD, String usuario, String contrasenia,int reservaOAlquiler )
+	
+	public void realizarReservaCliente(String categoria, String sedeR, String fechaA, String fechaF, String sedeD, String usuario, String contrasenia,int reservaOAlquiler, String quienRealiza )
 	{
 		//0 si es reserva, 1 si es alquiler ( El tipo, ultimo parametro)
+		
+		
 		try {
-			empresaAlquilerVehiculos.CrearReserva(categoria, sedeR, fechaA, fechaF, sedeD, usuario, contrasenia,reservaOAlquiler);
+			empresaAlquilerVehiculos.CrearReserva(categoria, sedeR, fechaA, fechaF, sedeD, usuario, contrasenia,reservaOAlquiler, quienRealiza);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}	
+	}
+
+	
+
+	
 }
