@@ -2,63 +2,84 @@ package consola;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
+//
+import java.awt.Component;
+
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+//import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.JTextField;
 
 public class InterfazRegistrarReservaCliente extends JFrame implements ActionListener{
-	private ArrayList<JTextField> listaJTextFields ;
-	private ArrayList<JLabel> listaLabels = new ArrayList<JLabel>();
+	//private ArrayList<JTextField> listaJTextFields ;
+	//private ArrayList<JLabel> listaLabels = new ArrayList<JLabel>();
 	private JButton botonRegistrar ;
 	private PanelCliente panelCliente;
+	private PanelAuxLista panelLista;
+	private PanelLogin panelSur;
 	
-public InterfazRegistrarReservaCliente(PanelCliente interfazCliente) {
-	this.panelCliente = interfazCliente;
-	setUndecorated(true); 
-	JPanel panelInterfaz =new JPanel();
-	panelInterfaz.setLayout(new GridBagLayout());
-	panelCliente.agregarLabel("Categoría", listaLabels);
-	panelCliente.agregarLabel("Sede a Recoger", listaLabels);
-	panelCliente.agregarLabel("Fecha Inicial", listaLabels);
-	panelCliente.agregarLabel("Fecha Final", listaLabels);
-	panelCliente.agregarLabel("Sede a devolver", listaLabels);
-	GridBagConstraints c  = new GridBagConstraints();
-	c.gridx=1;
-	c.gridy=0;
-	c.insets = new Insets(10, 10, 10, 10);
-	panelInterfaz.add(new JLabel("Ingrese la informacion de la reserva:"),c);
-	listaJTextFields = panelCliente.crearJtextFieldsParaLabels(listaLabels, panelInterfaz,3,1);
-	
-	panelInterfaz.setBackground(new Color(79,193,223));
-	//Boton Registrar
-	botonRegistrar  = new JButton("Reservar");
-	botonRegistrar.setBackground(new Color(	188,192,193));
-	botonRegistrar.setSize(getPreferredSize());
-	botonRegistrar.addActionListener(this);
-	c.gridx =1;
-	c.gridy =7;
-	c.gridwidth= 3;
-	c.weightx = 2;
-	
-	panelInterfaz.add(botonRegistrar,c);
-	
-	add(panelInterfaz);
-	getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
-	setSize(700,270);
-	setResizable(false);
-	
-}
+	public InterfazRegistrarReservaCliente(PanelCliente panelCliente) {
+		//setSize( 750, 600 );
+		setLayout(new BorderLayout());
+		setBackground(new Color(79,193,223));
+		panelLista = new PanelAuxLista(this);
+		JPanel panelTitulo = new JPanel();
+		panelTitulo.add(new JLabel("Ingrese la informacion de la reserva:"));
+		panelTitulo.setBackground(new Color(79,193,223));
+		panelTitulo.setBorder(new EmptyBorder(0, 0, 0, 0));
+		//panelLista.setBorder(new EmptyBorder(0, 0, 0, 0));
+		LineBorder bordeCenter = new LineBorder(new Color(188, 192, 193)); // Cambia a tu color deseado
+        panelLista.setBorder(bordeCenter);
+		add(panelTitulo, BorderLayout.NORTH);
+		add(panelLista, BorderLayout.CENTER);
+		//add(panelLista, BorderLayout.SOUTH);
+		
+	    
+		//panelSur = new PanelOpciones(this);
+	    //add(panelSur, BorderLayout.SOUTH);
+	    
+		//this.panelCliente = interfazCliente;
+		//setUndecorated(true); 
+		//JPanel panelInterfaz = new JPanel();
+		//panelInterfaz.add(new JLabel("Ingrese la informacion de la reserva:"));
+		
+		
+	    //Boton
+        botonRegistrar = new JButton("Reservar");
+        botonRegistrar.setBackground(new Color(188, 192, 193));
+        Dimension botonDimension = new Dimension(100, 40);
+        botonRegistrar.setPreferredSize(botonDimension);
+        botonRegistrar.addActionListener(this);
+
+        JPanel panelBoton = new JPanel();
+        panelBoton.setBackground(new Color(79, 193, 223));
+        panelBoton.add(botonRegistrar);
+     // Establecer márgenes e insets para reducir el espacio no deseado
+        panelBoton.setBorder(new EmptyBorder(0, 0, 0, 0));
+        add(panelBoton, BorderLayout.SOUTH);
+				
+        getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        setSize(710, 270);
+        setResizable(false);
+	}
 		 
 		
 	@Override
