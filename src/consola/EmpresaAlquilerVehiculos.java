@@ -110,7 +110,7 @@ private String login(String usuario,String contrasenia) {
 		 Date fechaFinal = format.parse(fechaF);
 		 try {
 		Vehiculo vehiculo = controllerEmpresa.ReservaVehiculo(categoria, categoriaVehiculo, sedeR, fechaInicio, fechaFinal, listaSedes);
-		String sedeDevolver = input("Ingrese la sede que desea devolverlo");
+		//String sedeDevolver = input("Ingrese la sede que desea devolverlo");
 		//mostrarSeguros();
 		//int seguro =Integer.parseInt(input("Ingrese el numero del seguro que desea agregar"));
 		int seguro = 0;
@@ -130,7 +130,7 @@ private String login(String usuario,String contrasenia) {
 		
 		
 		double valorSinSeguro= controllerEmpresa.ValorReservaSinSeguro(vehiculo,listaSedes,sedeD);
-		reservas.add(controllerEmpresa.CrearReservaCliente(clienteAReservar,valorSinSeguro,administradorGeneral,conSeguro, vehiculo,sedeR,sedeDevolver,seguros,segurosPosiciones));
+		reservas.add(controllerEmpresa.CrearReservaCliente(clienteAReservar,valorSinSeguro,administradorGeneral,conSeguro, vehiculo,sedeR,sedeD,seguros,segurosPosiciones));
 		numeroReservaInteger+=1;
 		System.out.println("Creando la reserva... ");
 		Thread.sleep(100);
@@ -679,7 +679,9 @@ public ArrayList<Integer> crearListaCarros() {
 		String contrasenia, int reservaOAlquiler) throws ParseException {
 	// TODO Auto-generated method stub
 	  
+	  System.out.println(usuario);
 	  Cliente clienteAReservar = buscarClientePorLogin(usuario, contrasenia);
+	  System.out.println(clienteAReservar.getNombre());
 	  programaCliente(categoria,sedeR,fechaI,fechaF,sedeD,clienteAReservar,reservaOAlquiler);
 	  guardarycerra();
 }
