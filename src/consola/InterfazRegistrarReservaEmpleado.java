@@ -70,6 +70,57 @@ public class InterfazRegistrarReservaEmpleado extends JFrame implements ActionLi
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()== botonRegistrar) {
+			String texto="";
+			String categoria="";
+			String sedeRecoger="";
+			String FechaInicial="";
+			String FechaFinal="";
+			String sedeDevolver="";
+			String NombreCliente="";
+		    int o = 0;
+			for (int i = 0; i < listaJTextFields.size(); i++) {
+	
+				switch (i) {
+				
+				case 0: 
+					categoria = listaJTextFields.get(i).getText();
+					
+					break;
+					
+				case 1:
+					sedeRecoger = listaJTextFields.get(i).getText();
+				
+					break;
+				case 2:
+				    FechaInicial = listaJTextFields.get(i).getText();
+		
+					break;
+				case 3:
+					FechaFinal = listaJTextFields.get(i).getText();
+			
+					break;
+				case 4:
+					sedeDevolver = listaJTextFields.get(i).getText();
+					
+					break;
+				case 5:
+					NombreCliente =listaJTextFields.get(i).getText();
+					
+					break;
+					
+				default:
+					JOptionPane.showMessageDialog(null, "No se pudo registrar el vehiculo", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+				}
+			if( (categoria.equals("")) || (sedeRecoger.equals("")) || (FechaInicial.equals("")) || (FechaFinal.equals("")) || (sedeDevolver.equals("")) || (NombreCliente.equals(""))) {
+				JOptionPane.showMessageDialog(null, "No se pudo registrar el vehiculo, Complete todos los Espacio", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+			}else {
+			JOptionPane.showMessageDialog(this, "Vehiculo registrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+			this.dispose();
+			}
+		}
 	}
 	
 }
