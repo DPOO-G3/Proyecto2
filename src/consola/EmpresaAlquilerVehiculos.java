@@ -675,7 +675,9 @@ public ArrayList<Integer> crearListaCarros() {
   void CrearReserva(String categoria, String sedeR, String fechaA, String fechaF, String sedeD, String usuario,
 		String contrasenia) {
 	// TODO Auto-generated method stub
-	
+	  
+	  Cliente clienteAReservar = buscarClientePorLogin(usuario, contrasenia);
+	  guardarycerra();
 }
 
 }

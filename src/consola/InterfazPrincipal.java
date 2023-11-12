@@ -181,7 +181,12 @@ public class InterfazPrincipal extends JFrame {
 		return empresaAlquilerVehiculos.crearListaCarros();
 	}
 	
-	public void realizarReserva(String categoria, String sedeR, String fechaA, String fechaF, String sedeD, String usuario, String contrasenia )
+	public void buscarClienteYCrearReservaCliente()//Llenar con parametros mateo);
+	{
+		//Pedir user y contraseña
+		//llamar funcion realizarReservaCliente()
+	}
+	public void realizarReservaCliente(String categoria, String sedeR, String fechaA, String fechaF, String sedeD, String usuario, String contrasenia )
 	{
 		empresaAlquilerVehiculos.CrearReserva(categoria, sedeR, fechaA, fechaF, sedeD, usuario, contrasenia);
 	}	
