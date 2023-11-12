@@ -38,6 +38,7 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 	private Image imagen;	
 	private JComboBox<Integer> usuariosBox; 
 	private InterfazRegistrarReservaEmpleado interfazRegistrarReservaEmpleado;
+
 	
 	public PanelEmpleado(InterfazPrincipal interfazPrincipal,Empleado empleado ) {
 		
@@ -176,6 +177,11 @@ public class PanelEmpleado extends JPanel implements ActionListener{
         listaLabels.add(label);
 	}
 	
+	public int CrearReservaNueva(String categoria, String sedeRecoger, String fechaInicial, String fechaFinal, String sedeDevolver, String nombreCliente) {
+		int estaHecha = interfazPrincipal.buscarClienteYCrearReservaCliente(categoria, sedeRecoger, fechaInicial, fechaFinal, sedeDevolver, nombreCliente);
+		return estaHecha;
+	}
+	
 	
 
 
@@ -186,8 +192,16 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 			 interfazRegistrarReservaEmpleado = new InterfazRegistrarReservaEmpleado(this);
 			 interfazRegistrarReservaEmpleado.setVisible(true);
 		
-	}
-	}
+    	}else if (e.getSource()== btonModificarEstado) {
+    		 Integer idVehiculoSeleccionado = (Integer) usuariosBox.getSelectedItem();
+    		 
+    		     
+    	}
+    		
+    		
+		
+	    }
+	
 	
 	public ArrayList<JTextField> crearJtextFieldsParaLabels(ArrayList<JLabel> listaLabels,JPanel panel, int primeraColumna,int inicioDesde0) {
 		ArrayList<JTextField> listaJTextFields = new ArrayList<JTextField>();
@@ -230,6 +244,8 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 		}
 		return listaJTextFields;
 	}
+
+	
 	
 	
 	

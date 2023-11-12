@@ -123,7 +123,7 @@ public class InterfazRegistrarReservaCliente extends JFrame implements ActionLis
 					JOptionPane.showMessageDialog(null, "No se pudo registrar la reserva", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
-			interfazPrincipal.realizarReservaCliente(categoria, sedeR, fechaI, fechaF, sedeD,usuarioA,contraseniaA,tipo);
+			interfazPrincipal.realizarReservaCliente(categoria, sedeR, fechaI, fechaF, sedeD,usuarioA,contraseniaA,tipo,"Cliente");
 			JOptionPane.showMessageDialog(this, "Vehiculo registrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 			this.dispose();
 		}

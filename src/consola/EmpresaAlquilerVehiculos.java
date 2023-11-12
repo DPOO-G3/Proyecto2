@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javax.swing.JOptionPane;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -295,46 +298,52 @@ public void darDeBajaVehiculoAdmin(int idVehiculo){
  }
 
  
- private void programaEmpleado(Empleado empleadoLogin) throws ParseException {
-	 menuEmpleado();
+ public void programaEmpleado(String categoria, String sedeR,String fechaI,String fechaF,
+		 String sedeD, Cliente clienteAReservar,int option) throws ParseException {
+	 //menuEmpleado();
 	 Reserva reservaClienteInterno=null;
-	 int option = Integer.parseInt(input("Ingrese la opcion que desea"));
+	 //int option = Integer.parseInt(input("Ingrese la opcion que desea"));
+	 JOptionPane.showMessageDialog(null, "No se pudo registrar el vehiculo, Cliente no encontrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 	 if(option == 1) {
-		 recogerVehiculoCliente(reservaClienteInterno, empleadoLogin);
+		// recogerVehiculoCliente(reservaClienteInterno, empleadoLogin);
+	//Devolucion de Vehiculo
 	 }else if(option==2) {
 		 Reserva reservaClienteLogin=null;
 		 Integer numeroReserva = Integer.parseInt(input("Ingrese el identificador de reserva del cliente"));
 		 for (Reserva reservasCliente : reservas) {
 				if(numeroReserva.equals(reservasCliente.getIdentificador())) 
 					reservaClienteLogin = reservasCliente; 
-	 }   empleadoLogin.devolucionCocheCliente(reservaClienteLogin);
-	 String estadoCocheString = input("El carro esta en buen estado Si(1) No(0)");
-	 boolean funcional = false;
-	 if(estadoCocheString.equals("1")) {
-		 funcional = true;
-		 empleadoLogin.revisarEstadoVehiculo(reservaClienteLogin.getVehiculo(), funcional);
-		 System.out.println("El carro fue devuelto con exito"); 
-		 System.out.println("El carro se lavara en unos minutos");
+	 }   
+	
+//	empleadoLogin.devolucionCocheCliente(reservaClienteLogin);
+	// String estadoCocheString = input("El carro esta en buen estado Si(1) No(0)");
+	// boolean funcional = false;
+	 //if(estadoCocheString.equals("1")) {
+		// funcional = true;
+		// empleadoLogin.revisarEstadoVehiculo(reservaClienteLogin.getVehiculo(), funcional);
+		 //System.out.println("El carro fue devuelto con exito"); 
+		 //System.out.println("El carro se lavara en unos minutos");
 		 
-	 }else {
-		 System.out.println("Generando cobro a la tarjeta del cliente");
-	 }
+	// }else {
+	//	 System.out.println("Generando cobro a la tarjeta del cliente");
+	 //}
 	 
 	  
 	 } else if (option==3) {
-		 ArrayList<Integer> segurosPosiciones = new ArrayList<Integer>();
-		 String categoria=input("Nombre del cliente");
-		 String nombreCliente=input("Tipo de vehiculo");
-		 String nombreSede = input("Sede en la que desea el cliente recogerlo");
-		 String fechaI= input("Fecha de inicio formato: yyyy-MM-dd HH:mm");
-		 String fechaF= input("Fecha de finalizacion formato: yyyy-MM-dd HH:mm");
-		 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		 Date fechaInicio =format.parse(fechaI);
-		 Date fechaFinal = format.parse(fechaF);
+		 
+		ArrayList<Integer> segurosPosiciones = new ArrayList<Integer>();
+		// String categoria=input("Nombre del cliente");
+		// String nombreCliente=input("Tipo de vehiculo");
+		// String nombreSede = input("Sede en la que desea el cliente recogerlo");
+		// String fechaI= input("Fecha de inicio formato: yyyy-MM-dd HH:mm");
+//		 String fechaF= input("Fecha de finalizacion formato: yyyy-MM-dd HH:mm");
+     	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date fechaInicio =format.parse(fechaI);
+	    Date fechaFinal = format.parse(fechaF);
 		 try {
-		Vehiculo vehiculo = controllerEmpresa.ReservaVehiculo(categoria, categoriaVehiculo, nombreSede, fechaInicio, fechaFinal, listaSedes);
-		String sedeDevolver = input("Sede que desea devolverlo");
-		mostrarSeguros();
+		Vehiculo vehiculo = controllerEmpresa.ReservaVehiculo(categoria, categoriaVehiculo, sedeR, fechaInicio, fechaFinal, listaSedes);
+		//String sedeDevolver = input("Sede que desea devolverlo");
+		//mostrarSeguros();
 		int seguro =Integer.parseInt(input("Ingrese el numero del seguro que desea agregar"));
 		boolean conSeguro = false;
 		if(seguro!=0) {
@@ -343,17 +352,17 @@ public void darDeBajaVehiculoAdmin(int idVehiculo){
 			while(masSeguro.equals("1")) {
 				seguro = Integer.parseInt(input("Ingrese el numero del seguro que desea agregar"))  ;
 				segurosPosiciones.add(seguro);
-				masSeguro = input("Desea agregar otro seguro Si(1) , No(0)");
+			masSeguro = input("Desea agregar otro seguro Si(1) , No(0)");
 			}
-			conSeguro = true;
+			 
+		conSeguro = true;
 		}
 		
+	
 		
-		
-		
-		double valorSinSeguro= controllerEmpresa.ValorReservaSinSeguro(vehiculo,listaSedes,sedeDevolver);
-		Cliente clienteLogin = buscarClienteSistema(nombreCliente, listaClientes);
-		reservas.add(controllerEmpresa.CrearReservaCliente(clienteLogin,valorSinSeguro,administradorGeneral,conSeguro, vehiculo,nombreSede,sedeDevolver,seguros,segurosPosiciones));
+		double valorSinSeguro= controllerEmpresa.ValorReservaSinSeguro(vehiculo,listaSedes,sedeD);
+		//Cliente clienteLogin = buscarClienteSistema(clienteAReservar.getNombre());
+		reservas.add(controllerEmpresa.CrearReservaCliente(clienteAReservar,valorSinSeguro,administradorGeneral,conSeguro, vehiculo,sedeR,sedeD,seguros,segurosPosiciones));
 		numeroReservaInteger+=1;
 		System.out.println("Creando la reserva... ");
 		Thread.sleep(100);
@@ -520,9 +529,9 @@ public static void main(String[] args) throws ParseException {
  
 
 
- private Cliente buscarClienteSistema(String nombreCliente,ArrayList<Cliente> clientes) {
+ public Cliente buscarClienteSistema(String nombreCliente) {
 	 Cliente clienteEncontrado;
-	 for (Cliente cliente2 : clientes) {
+	 for (Cliente cliente2 : listaClientes) {
 		if(cliente2.getNombre().equalsIgnoreCase(nombreCliente)) {
 			clienteEncontrado = cliente2;
 			return clienteEncontrado;
@@ -676,12 +685,18 @@ public ArrayList<Integer> crearListaCarros() {
 }
 
   void CrearReserva(String categoria, String sedeR, String fechaI, String fechaF, String sedeD, String usuario,
-		String contrasenia, int reservaOAlquiler) throws ParseException {
+		String contrasenia, int reservaOAlquiler, String quienRealiza) throws ParseException {
 	// TODO Auto-generated method stub
-	  
-	  Cliente clienteAReservar = buscarClientePorLogin(usuario, contrasenia);
+	   Cliente clienteAReservar = buscarClientePorLogin(usuario, contrasenia);
+
+	  if(quienRealiza.equals("Cliente")) {
+	 ;
 	  programaCliente(categoria,sedeR,fechaI,fechaF,sedeD,clienteAReservar,reservaOAlquiler);
 	  guardarycerra();
-}
+	  }else if(quienRealiza.equals("Empleado")) {
+		 
+		 programaEmpleado(categoria,sedeR,fechaI,fechaF,sedeD,clienteAReservar,reservaOAlquiler);
+		 guardarycerra();
+	  }
 
-}
+}}

@@ -71,7 +71,7 @@ public class InterfazRegistrarReservaEmpleado extends JFrame implements ActionLi
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()== botonRegistrar) {
-			String texto="";
+			
 			String categoria="";
 			String sedeRecoger="";
 			String FechaInicial="";
@@ -117,11 +117,15 @@ public class InterfazRegistrarReservaEmpleado extends JFrame implements ActionLi
 			if( (categoria.equals("")) || (sedeRecoger.equals("")) || (FechaInicial.equals("")) || (FechaFinal.equals("")) || (sedeDevolver.equals("")) || (NombreCliente.equals(""))) {
 				JOptionPane.showMessageDialog(null, "No se pudo registrar el vehiculo, Complete todos los Espacio", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 			}else {
+				
+			int estaHecha =interfazEmpleado.CrearReservaNueva(categoria, sedeRecoger, FechaInicial, FechaFinal,sedeDevolver,NombreCliente);
+			if(estaHecha == 0) {
+				JOptionPane.showMessageDialog(null, "No se pudo registrar el vehiculo, Cliente no encontrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+			}else {
 			JOptionPane.showMessageDialog(this, "Vehiculo registrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 			this.dispose();
 			}
+			}
 		}
-	}
-	
-}
+}}
 
