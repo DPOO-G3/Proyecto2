@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -186,8 +187,14 @@ public class InterfazPrincipal extends JFrame {
 		//Pedir user y contraseña
 		//llamar funcion realizarReservaCliente()
 	}
-	public void realizarReservaCliente(String categoria, String sedeR, String fechaA, String fechaF, String sedeD, String usuario, String contrasenia )
+	public void realizarReservaCliente(String categoria, String sedeR, String fechaA, String fechaF, String sedeD, String usuario, String contrasenia,int reservaOAlquiler )
 	{
-		empresaAlquilerVehiculos.CrearReserva(categoria, sedeR, fechaA, fechaF, sedeD, usuario, contrasenia);
+		//0 si es reserva, 1 si es alquiler ( El tipo, ultimo parametro)
+		try {
+			empresaAlquilerVehiculos.CrearReserva(categoria, sedeR, fechaA, fechaF, sedeD, usuario, contrasenia,reservaOAlquiler);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}	
 }

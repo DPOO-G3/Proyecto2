@@ -36,12 +36,14 @@ public class InterfazRegistrarReservaCliente extends JFrame implements ActionLis
 	private String usuarioA;
 	private String contraseniaA;
 	private InterfazPrincipal interfazPrincipal;
+	private int tipo;
 	
 	public InterfazRegistrarReservaCliente(int tipo,String usuarioA, String contraseniaA,InterfazPrincipal interfazPrincipal) {
 		//setSize( 750, 600 );
 		this.usuarioA = usuarioA;
 		this.contraseniaA = contraseniaA;
 		this.interfazPrincipal = interfazPrincipal;
+		this.tipo = tipo;
 		fechaActual = LocalDate.now();
 		setLayout(new BorderLayout());
 		setBackground(new Color(79,193,223));
@@ -121,7 +123,7 @@ public class InterfazRegistrarReservaCliente extends JFrame implements ActionLis
 					JOptionPane.showMessageDialog(null, "No se pudo registrar la reserva", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
-			interfazPrincipal.realizarReservaCliente(categoria, sedeR, fechaI, fechaF, sedeD,usuarioA,contraseniaA);
+			interfazPrincipal.realizarReservaCliente(categoria, sedeR, fechaI, fechaF, sedeD,usuarioA,contraseniaA,tipo);
 			JOptionPane.showMessageDialog(this, "Vehiculo registrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 			this.dispose();
 		}
