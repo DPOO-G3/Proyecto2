@@ -208,6 +208,16 @@ public class InterfazPrincipal extends JFrame {
 		}
 	}
 
+	public int DevolverCarro(Integer idVehiculoSeleccionado, Empleado empleado) {
+		int hecha = empresaAlquilerVehiculos.ProgramaEmpleadoDevolucion(idVehiculoSeleccionado,empleado);
+		return hecha;
+	}
+
+	public int RecibirCarroCliente(Empleado empleado, Integer idVehiculoSeleccionado) {
+		int hecho = empresaAlquilerVehiculos.ProgramaEmpleadoRecogerCliente(empleado, idVehiculoSeleccionado);
+		return hecho;
+	}
+
 	
 
 	

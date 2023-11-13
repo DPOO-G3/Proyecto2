@@ -297,15 +297,36 @@ public void darDeBajaVehiculoAdmin(int idVehiculo){
 		
  }
 
+ public int ProgramaEmpleadoDevolucion(Integer idVehiculoSeleccionado, Empleado empleado) {
+	 ArrayList<Reserva> reservasHechas = reservas;
+	 Reserva reservaEncontrada = null;
+	 for (Reserva reserva : reservasHechas) {
+			if((idVehiculoSeleccionado.equals(reserva.getVehiculo().getIdVehiculo()) && (reserva.getVehiculo().getAlquilado() == true)) )
+				reservaEncontrada = reserva; 
+	
+      }
+	 if (reservaEncontrada == null) {
+		 return 0;
+	 }
+	 empleado.devolucionCocheCliente(reservaEncontrada);
+	 return 1;
+ }
+ 
+public int ProgramaEmpleadoRecogerCliente(Empleado empleado, Integer idVehiculoSeleccionado) {
+	Reserva reservaClienteInterno = null;
+	int esta67 = recogerVehiculoCliente(reservaClienteInterno, empleado, idVehiculoSeleccionado);
+	return esta67;
+}
  
  public void programaEmpleado(String categoria, String sedeR,String fechaI,String fechaF,
 		 String sedeD, Cliente clienteAReservar,int option) throws ParseException {
 	 //menuEmpleado();
 	 Reserva reservaClienteInterno=null;
 	 //int option = Integer.parseInt(input("Ingrese la opcion que desea"));
-	 JOptionPane.showMessageDialog(null, "No se pudo registrar el vehiculo, Cliente no encontrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+	
 	 if(option == 1) {
-		// recogerVehiculoCliente(reservaClienteInterno, empleadoLogin);
+		 ArrayList<Reserva> reservaClienteLogin=clienteAReservar.getReservas();
+		 
 	//Devolucion de Vehiculo
 	 }else if(option==2) {
 		 Reserva reservaClienteLogin=null;
@@ -315,9 +336,9 @@ public void darDeBajaVehiculoAdmin(int idVehiculo){
 					reservaClienteLogin = reservasCliente; 
 	 }   
 	
-//	empleadoLogin.devolucionCocheCliente(reservaClienteLogin);
+    // empleadoLogin.devolucionCocheCliente(reservaClienteLogin);
 	// String estadoCocheString = input("El carro esta en buen estado Si(1) No(0)");
-	// boolean funcional = false;
+	 boolean funcional = false;
 	 //if(estadoCocheString.equals("1")) {
 		// funcional = true;
 		// empleadoLogin.revisarEstadoVehiculo(reservaClienteLogin.getVehiculo(), funcional);
@@ -381,39 +402,41 @@ public void darDeBajaVehiculoAdmin(int idVehiculo){
  } 
 
  
- private void recogerVehiculoCliente(Reserva reservaClienteInterno,Empleado empleadoLogin) {
-	 Integer numeroReserva = Integer.parseInt(input("Ingrese el identificador de reserva del cliente"));
-		for (Reserva reserva : reservas) {
-			if(numeroReserva.equals(reserva.getIdentificador()));{
-			reservaClienteInterno = reserva;}
-		}
+ private int recogerVehiculoCliente(Reserva reservaClienteInterno,Empleado empleadoLogin, Integer idVehiculoSeleccionado) {
+	
+	 
+	 for (Reserva reserva : reservas) {
+			if((idVehiculoSeleccionado.equals(reserva.getVehiculo().getIdVehiculo()) && (reserva.getVehiculo().getAlquilado() == true)) )
+				reservaClienteInterno = reserva; 
+			
+	
+     }
+	 if(reservaClienteInterno == null) {
+		 return 0;
+	 }
 		 double valorAdicional = 0;
-		 String adicional = input("El cliente desea agregar otro conductor Si(1) No (0)");
+		
+		 String adicional = "1";
 		 if(adicional.equals("1")) {
-			int numero = Integer.parseInt(input("Numero de licencia"));
-			String pais = input("Pais donde fue radicada");
+			int numero = 123456;
+			String pais = "Colombia";
 			valorAdicional = reservaClienteInterno.getVehiculo().getCategoria().getTarifario().getValorExtra2Conduc();
 			SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
 			Date fechaVencimiento;
 			try {
-				fechaVencimiento = formatoFecha.parse(input("Fecha de vencimiento de la licencia yyyy-MM-dd"));
+				fechaVencimiento = formatoFecha.parse("2023-12-03");
 				valorAdicional= empleadoLogin.agregarConductor(valorAdicional, reservaClienteInterno, numero, pais, fechaVencimiento);
 				double tarifaTotal = reservaClienteInterno.getPrecioRestante() + valorAdicional;
 				 empleadoLogin.administarRecogidaCliente(reservaClienteInterno);
-				 System.out.println("Verificando los datos del cliente");
-				 System.out.println("La tarifa total a pagar del cliente son"+ tarifaTotal);
-				 System.out.println("Generando cobro a la tarjeta.....");
-				 System.out.println("Pago exitoso");
+				
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
-			System.out.println("Verificando los datos del cliente");
-			 System.out.println("La tarifa total a pagar del cliente son"+ reservaClienteInterno.getPrecioRestante());
-			System.out.println("Generando cobro a la tarjeta.....");
-			 System.out.println("Pago exitoso");
+		 }
+		 return 1;
 		 }	  
- }
+ 
  
  
  private void programaAdministradorLocal(AdministradorLocal administradorLocalLogin) throws ParseException {

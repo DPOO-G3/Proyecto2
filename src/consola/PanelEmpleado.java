@@ -21,8 +21,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import logica.AdministradorLocal;
@@ -38,11 +40,13 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 	private Image imagen;	
 	private JComboBox<Integer> usuariosBox; 
 	private InterfazRegistrarReservaEmpleado interfazRegistrarReservaEmpleado;
+	private Empleado empleado;
 
 	
 	public PanelEmpleado(InterfazPrincipal interfazPrincipal,Empleado empleado ) {
 		
 		this.interfazPrincipal = interfazPrincipal;
+		this.empleado = empleado;
 		cargarImagen();
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -111,10 +115,9 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 		
 		JPanel panelBuscarCarro = new JPanel();
 		panelBuscarCarro.setLayout(new GridLayout(1,2,1,0));
-		JLabel labelIngresar = new JLabel("Ingrese ID Vehiculo: ");
-		JTextField cajaText= new JTextField();
+		JLabel labelIngresar = new JLabel("Seleccione ID Vehiculo: ");
 		panelBuscarCarro.add(labelIngresar);
-		panelBuscarCarro.add(cajaText);
+	
 		c = new GridBagConstraints();
 		c.gridx=0;
 		c.gridy=5;
@@ -131,10 +134,11 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 
 		usuariosBox = new JComboBox<Integer>(arrayCarros);
 		
-		btonModificarEstado = new JButton("Modificar estado del Vehiculo ");
+		btonModificarEstado = new JButton("Devolucion del carro");
 		btonModificarEstado.setBackground(Color.red);
 		panelModificarEstado.add(usuariosBox);
 		panelModificarEstado.add(btonModificarEstado);
+		btonModificarEstado.addActionListener(this);
 		c = new GridBagConstraints();
 		c.gridx=0;
 		c.gridy=6;
@@ -146,7 +150,7 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 		//Regsitro de alguiler y entrega de vehiculos
 		JPanel panelInferior = new JPanel();
 		panelInferior.setLayout(new GridLayout(1,2,50,0));
-		botonRecibirVehiculo = new JButton("Recibir Vehiculo");
+		botonRecibirVehiculo = new JButton("Entrega Vehiculo");
 		BtonCrearReserva = new JButton("Crear reserva");
 		panelInferior.add(botonRecibirVehiculo);
 		panelInferior.add(BtonCrearReserva);
@@ -191,16 +195,32 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 		if(e.getSource()==BtonCrearReserva) {
 			 interfazRegistrarReservaEmpleado = new InterfazRegistrarReservaEmpleado(this);
 			 interfazRegistrarReservaEmpleado.setVisible(true);
+			 
 		
     	}else if (e.getSource()== btonModificarEstado) {
     		 Integer idVehiculoSeleccionado = (Integer) usuariosBox.getSelectedItem();
-    		 
+    	
+    		 int Hecha = interfazPrincipal.DevolverCarro(idVehiculoSeleccionado,empleado);
+    		 if(Hecha == 0) {
+    			 JOptionPane.showMessageDialog(null, "No ha habido reserva de este Vehiculo", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+    		 }else {
+    			 JOptionPane.showMessageDialog(null, "Devolucion Exitosa", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+    		 }
     		     
+    	}else if(e.getSource()== botonRecibirVehiculo){
+    		
+    		Integer idVehiculoSeleccionado = (Integer) usuariosBox.getSelectedItem();
+    		int hecho3 = interfazPrincipal.RecibirCarroCliente(empleado, idVehiculoSeleccionado);
+    		SwingUtilities.invokeLater(() -> {
+                JOptionPane.showMessageDialog(null, "Entrega Hecha", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            });
     	}
     		
     		
 		
 	    }
+	
+	
 	
 	
 	public ArrayList<JTextField> crearJtextFieldsParaLabels(ArrayList<JLabel> listaLabels,JPanel panel, int primeraColumna,int inicioDesde0) {
@@ -243,6 +263,12 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 			
 		}
 		return listaJTextFields;
+	}
+
+	public void actualizarUsuariosBox() {
+	    ArrayList<Integer> listaCarros = interfazPrincipal.listaCarros();
+	    Integer[] arrayCarros = listaCarros.toArray(new Integer[0]);
+	    usuariosBox.setModel(new JComboBox<>(arrayCarros).getModel());
 	}
 
 	
