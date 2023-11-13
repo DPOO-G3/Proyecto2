@@ -186,8 +186,8 @@ private String login(String usuario,String contrasenia) {
 				 }	 
 			
 			 } 
-		 String conductorAdicional = input("Desea agregar otro conductor Si(1) No(0)");
-		 conductorAdicional = "0";
+		 //String conductorAdicional = input("Desea agregar otro conductor Si(1) No(0)");
+		 String conductorAdicional = "0";
 		 boolean aditional = conductorAdicional.equals("1");
 		 double valorConductorExtra=0;
 		 if(aditional) {
