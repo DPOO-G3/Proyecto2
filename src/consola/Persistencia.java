@@ -122,6 +122,7 @@ public class Persistencia {
 					if(idVehiculo == i.getIdVehiculo())
 					{vehiculo = i;}
 				}
+				//System.out.println(vehiculo.getColor());
 				String nombrePersona = partes[15];
 				Reserva perReserva = new Reserva(identificador, categoriaVehiculo, fechaInicio,
 						fechaFinal, precio30, precioRestante, precioTotal,numeroTarjeta,
