@@ -2,6 +2,7 @@ package consola;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,14 +13,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import logica.AdministradorLocal;
 
@@ -30,6 +36,7 @@ public class PanelAdminLocal  extends JPanel implements ActionListener{
 	private JButton BtonRegistrarCliente;
 	private JButton btonEliminar;
 	private JComboBox<String> usuariosBox ;
+	private InterfazRegistrarClienteAdminLocal InterfazRegistrarClienteAdminLocal;
 	
 	
 	public PanelAdminLocal(InterfazPrincipal interfazPrincipal,AdministradorLocal administradorLocal) {
@@ -106,6 +113,8 @@ public class PanelAdminLocal  extends JPanel implements ActionListener{
 		BtonRegistrarCliente = new JButton("Registrar Cliente");
 		panelInferior.add(botonRegistrarEmpleado);
 		panelInferior.add(BtonRegistrarCliente);
+		BtonRegistrarCliente.addActionListener(this);
+		botonRegistrarEmpleado.addActionListener(this);
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy =6;
@@ -140,10 +149,70 @@ public class PanelAdminLocal  extends JPanel implements ActionListener{
 		}
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void agregarLabel(String nombre,ArrayList<JLabel> listaLabels) {
+		JLabel label = new JLabel(nombre);
+        listaLabels.add(label);
+	}
+	
+	public ArrayList<JTextField> crearJtextFieldsParaLabels(ArrayList<JLabel> listaLabels,JPanel panel, int primeraColumna,int inicioDesde0) {
+		ArrayList<JTextField> listaJTextFields = new ArrayList<JTextField>();
+		for ( int i=0;i<listaLabels.size();i++) {
+			GridBagConstraints c;
+			Border borde = BorderFactory.createLineBorder(Color.black, 1);
+
+	       
+	        
+			if(i<primeraColumna) {
+				c = new GridBagConstraints();
+				JTextField textField = new JTextField();
+					textField.setBorder(borde);
+				 listaJTextFields.add(textField);
+				 textField.setPreferredSize(new Dimension(250, 30));
+				 textField.setEditable(true);
+//				
+				 c.gridy=i+inicioDesde0;
+				 c.gridx=0;
+				 panel.add(listaLabels.get(i),c);
+				 c.gridx=1;
+				 panel.add(textField,c);
+				
+				
+				
+			}	else {
+				c = new GridBagConstraints();
+				JTextField textField = new JTextField();
+				textField.setBorder(borde);
+				listaJTextFields.add(textField);
+				textField.setPreferredSize(new Dimension(250, 30));
+				textField.setEditable(true);
+				c.gridx=3;
+				c.gridy=inicioDesde0+i-primeraColumna;
+				panel.add(textField,c);
+				c.gridx=2;
+				panel.add(listaLabels.get(i),c);
+			}
+			
+		}
+		return listaJTextFields;
+	}
+	
+	public void RegistrarClienteNuevo(String nombre, String nacionalidad, String telefono, String fechaNac, String paisExp, String usuario, String contraseña, int nLicencia, String fechaVencLicen) throws ParseException {
+		interfazPrincipal.registrarClienteNeuvo(nombre,nacionalidad,telefono,fechaNac,paisExp,usuario, contraseña, nLicencia,fechaVencLicen);
 		
 	}
+	
+	
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()== BtonRegistrarCliente) {
+			InterfazRegistrarClienteAdminLocal = new InterfazRegistrarClienteAdminLocal(this);
+			InterfazRegistrarClienteAdminLocal.setVisible(true);
+		}
+		
+	}
+
+	
 	
 }

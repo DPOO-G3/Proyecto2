@@ -218,6 +218,11 @@ public class InterfazPrincipal extends JFrame {
 		return hecho;
 	}
 
+	public void registrarClienteNeuvo(String nombre, String nacionalidad, String telefono, String fechaNac, String paisExp, String usuario, String contraseña, int nLicencia, String fechaVencLicen) throws ParseException {
+		empresaAlquilerVehiculos.crearUsuario(nombre,nacionalidad,telefono,fechaNac,paisExp,usuario, contraseña, nLicencia,fechaVencLicen);
+		
+	}
+
 	
 
 	

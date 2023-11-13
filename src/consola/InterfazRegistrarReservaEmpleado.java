@@ -68,9 +68,7 @@ public class InterfazRegistrarReservaEmpleado extends JFrame implements ActionLi
 	
 	
 	}
-	public void actualizarUsuariosBox() {
-	   interfazEmpleado.actualizarUsuariosBox();
-	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -127,7 +125,7 @@ public class InterfazRegistrarReservaEmpleado extends JFrame implements ActionLi
 				JOptionPane.showMessageDialog(null, "No se pudo registrar el vehiculo, Cliente no encontrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 			}else {
 			JOptionPane.showMessageDialog(this, "Vehiculo registrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-			actualizarUsuariosBox();
+		
 			this.dispose();
 			}
 			}
