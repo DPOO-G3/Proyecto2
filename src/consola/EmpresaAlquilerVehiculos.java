@@ -448,7 +448,7 @@ public int ProgramaEmpleadoRecogerCliente(Empleado empleado, Integer idVehiculoS
 		menuAdministradorLocal();
 		int option = Integer.parseInt(input("Ingrese la opcion que desea"));
 		if(option==1) {
-			crearUsuario();
+			//crearUsuario();
 		}else if(option==2) {
 			int opcion2  = Integer.parseInt(input("¿Que desea hacer? 1. Agregar Empleado o 2.Eliminar Empleado\n"));
 		    if (opcion2 == 1) {
@@ -514,21 +514,19 @@ private void agregarEmpleado() {
 	   System.out.println("Empleado Agregado exitosamente \n");
 }
 
-private void crearUsuario() throws ParseException {
+public void crearUsuario(String nombre2, String nacionalidad2, String telefono2, String fechaNac2, String paisExp, String usuario2, String contraseña2, int nLicencia, String fechaVencLicen) throws ParseException {
 	 
-	System.out.println("\n*******CREACION DE USUARIO****************\n");
-	   System.out.println("Por favor llene el formulario: \n");
 	   
-	   String nombre = input("Nombre: ");
-	   String nacionalidad = input("Nacionalidad: ");
-	   String telefono = input("Telefono: ");
-	   String fechaNac = input("Fecha de Nacimiento: ");
-	   String usuario = input("Digite el nombre de usuario: ");
-	   String contraseña = input("Digite su contraseña ¡NO OLVIDAR!: ");
+	   String nombre = nombre2;
+	   String nacionalidad = nacionalidad2;
+	   String telefono = telefono2;
+	   String fechaNac = fechaNac2;
+	   String usuario = usuario2;
+	   String contraseña = contraseña2;
 	   
-	   int numeroLicencia = Integer.parseInt(input("Ingrese el numero de Licencia:"));
-	   String paisExpe = input("Ingrese pais de expedición: ");
-	   String Fecvenci = input("Fecha de venciomiento del documento: ");
+	   int numeroLicencia = nLicencia;
+	   String paisExpe = paisExp;
+	   String Fecvenci = fechaVencLicen;
 	   
 	   SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	   Date fechau =format.parse(Fecvenci);
@@ -536,8 +534,6 @@ private void crearUsuario() throws ParseException {
 	   LicienciaConducion Lice = new LicienciaConducion(numeroLicencia, paisExpe, fechau );
 	   Cliente cliente = new Cliente(nombre, nacionalidad, telefono, fechaNac,usuario, contraseña, "Cliente", null, Lice);
 	   listaClientes.add(cliente);
-	   
-	   System.out.println("Cliente Agregado Exitosamente \n");
 }
 
 public static void main(String[] args) throws ParseException {
