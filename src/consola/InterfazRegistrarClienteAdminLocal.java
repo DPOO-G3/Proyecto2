@@ -139,7 +139,7 @@ public class InterfazRegistrarClienteAdminLocal extends JFrame implements Action
 				}
 			if( (Nombre.equals("")) || (Nacionalidad.equals("")) || (telefono.equals("")) || (FechaNac.equals("")) || (PaisExp.equals("")) || (Usuario.equals("")) || (Contraseña.equals(""))){
 				JOptionPane.showMessageDialog(null, "No se pudo registrar el vehiculo, Complete todos los Espacio", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-			}else {
+			}else{
 				try {
 					interfazAdminLocal.RegistrarClienteNuevo(Nombre,Nacionalidad,telefono,FechaNac,PaisExp,Usuario,Contraseña,NLicencia,FechaVencLicen);
 					JOptionPane.showMessageDialog(this, "Registro del Cliente Exitoso", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
