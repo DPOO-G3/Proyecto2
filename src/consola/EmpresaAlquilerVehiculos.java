@@ -6,12 +6,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 import logica.LicienciaConducion;
 import logica.AdministradorGeneral;
@@ -42,6 +46,7 @@ public class EmpresaAlquilerVehiculos {
   private ArrayList<Reserva> reservas = new ArrayList<Reserva>();
   private ArrayList<Seguro> seguros = new ArrayList<Seguro>();
   public static Integer numeroReservaInteger = 0 ;
+  public static Map<Date, Integer> calendario;
   
   
   
@@ -534,11 +539,21 @@ public void crearUsuario(String nombre2, String nacionalidad2, String telefono2,
 public static void main(String[] args) throws ParseException {
 	 
 	 EmpresaAlquilerVehiculos programa = new EmpresaAlquilerVehiculos();
+	//CRear Mapa de calendarios
+	 Map<Date, Integer> mapaFechas = generarFechasDeDosAnios(2023, 2024);
+	 EmpresaAlquilerVehiculos.calendario = mapaFechas;
 	 ControllerCarga control = new ControllerCarga();
 	 programa.cargaDatos(control);
 	 Persistencia persistencia = new Persistencia();
-	 programa.cargaPersistencia(persistencia, programa);
+	 programa.cargaPersistencia(persistencia, programa);	
+	 programa.cargarReservasEnCalendario(programa);
 	 
+	// Imprimir el HashMap para ambos años
+     System.out.println("Fechas para 2023 y 2024:");
+     for (Map.Entry<Date, Integer> entry : EmpresaAlquilerVehiculos.calendario.entrySet()) {
+         System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());}
+	 
+	 //Abrir ventana
 	 InterfazPrincipal ventana = new InterfazPrincipal(programa);
 	 ventana.setLocationRelativeTo( null );
      ventana.setVisible( true );
@@ -546,7 +561,40 @@ public static void main(String[] args) throws ParseException {
 	 
 }
  
+public void cargarReservasEnCalendario(EmpresaAlquilerVehiculos programa)
+{
+	for(Vehiculo i:programa.listaVehiculo) {
+		System.out.println(i.getIdVehiculo());
+		System.out.println(i.getPlaca());
+		for(Map.Entry<Date, Integer> entry : EmpresaAlquilerVehiculos.calendario.entrySet())
+			{
+			 Date fecha = entry.getKey();
+			 
+			if (i.getFechaInicio()!=null &&(fecha.compareTo(i.getFechaInicio()) >= 0  && fecha.compareTo(i.getFechaFinal()) <= 0)){
+				EmpresaAlquilerVehiculos.calendario.put(fecha, entry.getValue()+1);
+				System.out.println(entry.getKey());}
+			}
+	}
+}
+	
 
+public static Map<Date, Integer> generarFechasDeDosAnios(int yearInicio, int yearFin) {
+    Map<Date, Integer> mapaFechas = new HashMap<>();
+    //DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    // Generar fechas para ambos años
+    for (int year = yearInicio; year <= yearFin; year++) {
+        for (int i = 1; i <= LocalDate.ofYearDay(year, 1).lengthOfYear(); i++) {
+            LocalDate fecha = LocalDate.ofYearDay(year, i);
+            Date date = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            //String fechaFormateada = fecha.format(formato);
+            // Usamos el día del año como valor entero
+            mapaFechas.put(date, 0);
+        }
+    }
+
+    return mapaFechas;
+}
 
  public Cliente buscarClienteSistema(String nombreCliente) {
 	 Cliente clienteEncontrado;
@@ -596,6 +644,16 @@ public static void main(String[] args) throws ParseException {
 	reservasAux = persistencia.cargarReservas("./data/persistencia/reservas.txt\\", self);
 	reservas.addAll(reservasAux);
 	numeroReservaInteger+=reservas.size();
+	//System.out.println(numeroReservaInteger);
+	for( Reserva i:self.reservas)
+	{
+		System.out.println(i.getFechaInicio());
+		System.out.println(i.getFechaFinal());
+		//Vehiculo e = 
+		self.controllerEmpresa.ReservaVehiculo(i.getCategoriaVehiculo(), self.categoriaVehiculo, i.getSedeNombreRecoger(), i.getFechaInicio(), i.getFechaFinal(), self.listaSedes);
+		//self.listaVehiculo.add(e);
+	}
+	
 	
 	//for(i: Cliente)
 }
