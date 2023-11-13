@@ -779,4 +779,18 @@ public ArrayList<Integer> crearListaCarros() {
 		 guardarycerra();
 	  }
 
-}}
+}
+	public void reservaV(int id, Date fechaInicio, Date fechaFinal) throws ParseException{
+		for(Vehiculo coche: listaVehiculo)
+		{
+			if( coche.getFechaInicio() == null) {
+				coche.setFechaInicio(fechaInicio);
+							coche.setFechaFinal(fechaFinal);
+						}					
+			else if( fechaInicio.after(coche.getFechaFinal())||fechaFinal.before(coche.getFechaInicio())){
+				
+					coche.setFechaInicio(fechaInicio);
+					coche.setFechaFinal(fechaFinal);}					
+		}
+	}
+}

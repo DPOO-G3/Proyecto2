@@ -128,7 +128,7 @@ public class Persistencia {
 						fechaFinal, precio30, precioRestante, precioTotal,numeroTarjeta,
 						sedeNombreRecoger,sedeNombreDevolver,conductor,vehiculoRecogido,vehiculo, nombrePersona);
 				reservas.add(perReserva);
-				
+				self.reservaV(idVehiculo,fechaInicio,fechaVencimiento);
 			}
 		}
 		catch (FileNotFoundException e)
