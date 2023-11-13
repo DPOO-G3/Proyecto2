@@ -157,7 +157,7 @@ public class InterfazPrincipal extends JFrame {
 	
 	public void interfazCliente(String usuario , String contransenia) {
 		Cliente cliente = empresaAlquilerVehiculos.buscarClientePorLogin(usuario, contransenia);
-		panelCliente = new PanelCliente(this,cliente.getNombre(),cliente.getUsuario(),cliente.getFechaNac());
+		panelCliente = new PanelCliente(this,cliente.getNombre(),cliente.getUsuario(),cliente.getFechaNac(),cliente.getContraseña());
 		JFrame  JframeAdminLocal = new JFrame();
 		JframeAdminLocal.setLocationRelativeTo(null);
 		

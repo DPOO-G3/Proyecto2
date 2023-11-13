@@ -113,7 +113,7 @@ private String login(String usuario,String contrasenia) {
 		 Date fechaFinal = format.parse(fechaF);
 		 try {
 		Vehiculo vehiculo = controllerEmpresa.ReservaVehiculo(categoria, categoriaVehiculo, sedeR, fechaInicio, fechaFinal, listaSedes);
-		String sedeDevolver = input("Ingrese la sede que desea devolverlo");
+		//String sedeDevolver = input("Ingrese la sede que desea devolverlo");
 		//mostrarSeguros();
 		//int seguro =Integer.parseInt(input("Ingrese el numero del seguro que desea agregar"));
 		int seguro = 0;
@@ -133,7 +133,7 @@ private String login(String usuario,String contrasenia) {
 		
 		
 		double valorSinSeguro= controllerEmpresa.ValorReservaSinSeguro(vehiculo,listaSedes,sedeD);
-		reservas.add(controllerEmpresa.CrearReservaCliente(clienteAReservar,valorSinSeguro,administradorGeneral,conSeguro, vehiculo,sedeR,sedeDevolver,seguros,segurosPosiciones));
+		reservas.add(controllerEmpresa.CrearReservaCliente(clienteAReservar,valorSinSeguro,administradorGeneral,conSeguro, vehiculo,sedeR,sedeD,seguros,segurosPosiciones));
 		numeroReservaInteger+=1;
 		System.out.println("Creando la reserva... ");
 		Thread.sleep(100);
@@ -186,8 +186,8 @@ private String login(String usuario,String contrasenia) {
 				 }	 
 			
 			 } 
-		 String conductorAdicional = input("Desea agregar otro conductor Si(1) No(0)");
-		 conductorAdicional = "0";
+		 //String conductorAdicional = input("Desea agregar otro conductor Si(1) No(0)");
+		 String conductorAdicional = "0";
 		 boolean aditional = conductorAdicional.equals("1");
 		 double valorConductorExtra=0;
 		 if(aditional) {
@@ -710,14 +710,13 @@ public ArrayList<Integer> crearListaCarros() {
   void CrearReserva(String categoria, String sedeR, String fechaI, String fechaF, String sedeD, String usuario,
 		String contrasenia, int reservaOAlquiler, String quienRealiza) throws ParseException {
 	// TODO Auto-generated method stub
+
 	   Cliente clienteAReservar = buscarClientePorLogin(usuario, contrasenia);
 
 	  if(quienRealiza.equals("Cliente")) {
-	 ;
 	  programaCliente(categoria,sedeR,fechaI,fechaF,sedeD,clienteAReservar,reservaOAlquiler);
 	  guardarycerra();
 	  }else if(quienRealiza.equals("Empleado")) {
-		 
 		 programaEmpleado(categoria,sedeR,fechaI,fechaF,sedeD,clienteAReservar,reservaOAlquiler);
 		 guardarycerra();
 	  }

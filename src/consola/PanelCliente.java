@@ -37,8 +37,10 @@ public class PanelCliente extends JPanel implements ActionListener{
 	private String usuarioA;
 	private String contraseniaA;
 	
-	public PanelCliente(InterfazPrincipal interfazPrincipal, String nombre, String usuario, String fechaNac) {
+	public PanelCliente(InterfazPrincipal interfazPrincipal, String nombre, String usuario, String fechaNac, String contrasenia) {
 		this.interfazPrincipal = interfazPrincipal;
+		this.usuarioA = usuario;
+		this.contraseniaA = contrasenia;
 		cargarImagen();
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
