@@ -127,8 +127,8 @@ public class Persistencia {
 				Reserva perReserva = new Reserva(identificador, categoriaVehiculo, fechaInicio,
 						fechaFinal, precio30, precioRestante, precioTotal,numeroTarjeta,
 						sedeNombreRecoger,sedeNombreDevolver,conductor,vehiculoRecogido,vehiculo, nombrePersona);
-				
 				reservas.add(perReserva);
+				
 			}
 		}
 		catch (FileNotFoundException e)
