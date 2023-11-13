@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -66,6 +67,9 @@ public class InterfazRegistrarReservaEmpleado extends JFrame implements ActionLi
 		
 	
 	
+	}
+	public void actualizarUsuariosBox() {
+	   interfazEmpleado.actualizarUsuariosBox();
 	}
 
 	@Override
@@ -123,6 +127,7 @@ public class InterfazRegistrarReservaEmpleado extends JFrame implements ActionLi
 				JOptionPane.showMessageDialog(null, "No se pudo registrar el vehiculo, Cliente no encontrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 			}else {
 			JOptionPane.showMessageDialog(this, "Vehiculo registrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+			actualizarUsuariosBox();
 			this.dispose();
 			}
 			}

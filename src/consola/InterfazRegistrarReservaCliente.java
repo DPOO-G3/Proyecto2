@@ -110,14 +110,10 @@ public class InterfazRegistrarReservaCliente extends JFrame implements ActionLis
 					sedeR = listaJTextFields.get(i).getText();
 					break;
 				case 2:
-					if (tipo==1)
-					{fechaF = listaJTextFields.get(i).getText();}
-					else {fechaI =listaJTextFields.get(i).getText();}
+					fechaI =listaJTextFields.get(i).getText();
 					break;
 				case 3:
-					if(tipo==1)
-					{sedeD = listaJTextFields.get(i).getText();}
-					else{fechaF = listaJTextFields.get(i).getText();}
+					fechaF = listaJTextFields.get(i).getText();
 					break;
 				case 4:
 					sedeD = listaJTextFields.get(i).getText();
