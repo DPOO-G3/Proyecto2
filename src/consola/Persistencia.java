@@ -70,6 +70,10 @@ public class Persistencia {
 		BufferedReader lector;
 		java.util.ArrayList<Reserva> reservas = new java.util.ArrayList<>();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date fechaInicio = new Date();
+		Date fechaFinal = new Date();
+		int idVehiculo = 0;
+		
 		try
 		{
 			archivo = new FileReader(archivoReservas);
@@ -82,9 +86,9 @@ public class Persistencia {
 				int identificador = Integer.parseInt(partes[0]);
 				String categoriaVehiculo = partes[1];
 				String fechaI = (partes[2]);
-				Date fechaInicio = format.parse(fechaI);
+				fechaInicio = format.parse(fechaI);
 				String fechaF = partes[3];
-				Date fechaFinal =format.parse(fechaF);
+				fechaFinal =format.parse(fechaF);
 				double precio30 = Double.parseDouble(partes[4]);
 				double precioRestante = Double.parseDouble(partes[5]);
 				double precioTotal = Double.parseDouble(partes[6]);
@@ -116,7 +120,7 @@ public class Persistencia {
 				
 				//Se inicialia el vehiculo asociado
 				Vehiculo vehiculo = null;
-				int idVehiculo = Integer.parseInt(partes[14]);
+				idVehiculo = Integer.parseInt(partes[14]);
 				for(Vehiculo i:self.darListaVehiculo())
 				{
 					if(idVehiculo == i.getIdVehiculo())
@@ -128,7 +132,7 @@ public class Persistencia {
 						fechaFinal, precio30, precioRestante, precioTotal,numeroTarjeta,
 						sedeNombreRecoger,sedeNombreDevolver,conductor,vehiculoRecogido,vehiculo, nombrePersona);
 				reservas.add(perReserva);
-				self.reservaV(idVehiculo,fechaInicio,fechaVencimiento);
+				self.reservaV(self,idVehiculo,fechaInicio,fechaFinal);
 			}
 		}
 		catch (FileNotFoundException e)
@@ -140,6 +144,7 @@ public class Persistencia {
 			System.out.println("ERROR: hubo un problema leyendo el archivo.");
 			System.out.println(e.getMessage());
 		}
+		
 		return reservas;
 	}
 	
