@@ -549,9 +549,9 @@ public static void main(String[] args) throws ParseException {
 	 programa.cargarReservasEnCalendario(programa);
 	 
 	// Imprimir el HashMap para ambos años
-     //System.out.println("Fechas para 2023 y 2024:");
-     //for (Map.Entry<Date, Integer> entry : EmpresaAlquilerVehiculos.calendario.entrySet()) {
-     //    System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());}
+     System.out.println("Fechas para 2023 y 2024:");
+     for (Map.Entry<Date, Integer> entry : EmpresaAlquilerVehiculos.calendario.entrySet()) {
+         System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());}
 	 
 	 //Abrir ventana
 	 InterfazPrincipal ventana = new InterfazPrincipal(programa);
