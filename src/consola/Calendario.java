@@ -121,7 +121,7 @@ public class Calendario extends JFrame implements ActionListener {
         return Color.getHSBColor(hue, saturation, brightness);
     }
 
-    // Custom TableCellRenderer to set background color
+    
     private static class CustomRenderer extends DefaultTableCellRenderer {
         private final Color backgroundColor;
 
