@@ -44,6 +44,7 @@ public class PanelAdminGeneral extends JPanel implements ActionListener {
 	private JLabel jlabelImagen ;
 	private JTextField idAutoEliminar;
 	private JFrame frameVentanaEliminar;
+	private Calendario calendario;
 	
 	public PanelAdminGeneral(InterfazPrincipal interfazPrincipal) {
 		this.interfazPrincipal = interfazPrincipal;
@@ -232,7 +233,10 @@ public class PanelAdminGeneral extends JPanel implements ActionListener {
 			
 		}
 		else if (e.getSource()==consultarIDSedes) {
-			//Aca falta la parte de las sedes
+			String idSede = textfieldsedes.getText();
+			interfazPrincipal.SacarFechasDeSede(idSede);
+            calendario = new Calendario();
+            calendario.setVisible(true);
 		}
 		
 	}

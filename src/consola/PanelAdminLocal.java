@@ -37,6 +37,7 @@ public class PanelAdminLocal  extends JPanel implements ActionListener{
 	private JButton btonEliminar;
 	private JComboBox<String> usuariosBox ;
 	private InterfazRegistrarClienteAdminLocal InterfazRegistrarClienteAdminLocal;
+	private InterfazRegistrarEmpleoAdminLocal InterfazRegistrarEmpleoAdminLocal;
 	
 	
 	public PanelAdminLocal(InterfazPrincipal interfazPrincipal,AdministradorLocal administradorLocal) {
@@ -201,7 +202,11 @@ public class PanelAdminLocal  extends JPanel implements ActionListener{
 		
 	}
 	
-	
+	public int RegistrarEmpleadoNuevo(String nombre, String sede, String usuario, String contraseña) {
+		// TODO Auto-generated method stub
+		int comple = interfazPrincipal.registraEmpleadoNuevo(nombre,sede,usuario,contraseña);
+		return comple;
+	}
 	
 	
 	@Override
@@ -209,9 +214,14 @@ public class PanelAdminLocal  extends JPanel implements ActionListener{
 		if(e.getSource()== BtonRegistrarCliente) {
 			InterfazRegistrarClienteAdminLocal = new InterfazRegistrarClienteAdminLocal(this);
 			InterfazRegistrarClienteAdminLocal.setVisible(true);
+		}else if(e.getSource()== botonRegistrarEmpleado) {
+			InterfazRegistrarEmpleoAdminLocal = new InterfazRegistrarEmpleoAdminLocal(this);
+			InterfazRegistrarEmpleoAdminLocal.setVisible(true);
 		}
 		
 	}
+
+	
 
 	
 	

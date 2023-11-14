@@ -223,6 +223,18 @@ public class InterfazPrincipal extends JFrame {
 		
 	}
 
+	public int registraEmpleadoNuevo(String nombre, String sede, String usuario, String contraseña) {
+		// TODO Auto-generated method stub
+		int comple = empresaAlquilerVehiculos.agregarEmpleado(nombre, sede, usuario, contraseña);
+		
+		return comple;
+	}
+
+	public void SacarFechasDeSede(String idSede) {
+	empresaAlquilerVehiculos.sacarFechaSede(idSede);
+		
+	}
+
 	
 
 	
