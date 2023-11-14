@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JOptionPane;
 
@@ -356,21 +357,20 @@ public int ProgramaEmpleadoRecogerCliente(Empleado empleado, Integer idVehiculoS
 	 
 	  
 	 } else if (option==3) {
-		 
-		ArrayList<Integer> segurosPosiciones = new ArrayList<Integer>();
-		// String categoria=input("Nombre del cliente");
-		// String nombreCliente=input("Tipo de vehiculo");
-		// String nombreSede = input("Sede en la que desea el cliente recogerlo");
-		// String fechaI= input("Fecha de inicio formato: yyyy-MM-dd HH:mm");
-//		 String fechaF= input("Fecha de finalizacion formato: yyyy-MM-dd HH:mm");
-     	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		Date fechaInicio =format.parse(fechaI);
-	    Date fechaFinal = format.parse(fechaF);
+		 ArrayList<Integer> segurosPosiciones = new ArrayList<Integer>();
+		 //String categoria=input("Ingrese el tipo de vehiculo que desea ");
+		 //String nombreSede = input("Ingrese la sede en la que desea recogerlo");
+		 //String fechaI= input("Ingrese la fecha de inicio formato: yyyy-MM-dd HH:mm");
+		 //String fechaF= input("Ingrese la fecha de finalizacion formato: yyyy-MM-dd HH:mm");
+		 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		 Date fechaInicio =format.parse(fechaI);
+		 Date fechaFinal = format.parse(fechaF);
 		 try {
 		Vehiculo vehiculo = controllerEmpresa.ReservaVehiculo(categoria, categoriaVehiculo, sedeR, fechaInicio, fechaFinal, listaSedes);
-		//String sedeDevolver = input("Sede que desea devolverlo");
+		//String sedeDevolver = input("Ingrese la sede que desea devolverlo");
 		//mostrarSeguros();
-		int seguro =Integer.parseInt(input("Ingrese el numero del seguro que desea agregar"));
+		//int seguro =Integer.parseInt(input("Ingrese el numero del seguro que desea agregar"));
+		int seguro = 0;
 		boolean conSeguro = false;
 		if(seguro!=0) {
 			segurosPosiciones.add(seguro);
@@ -378,32 +378,32 @@ public int ProgramaEmpleadoRecogerCliente(Empleado empleado, Integer idVehiculoS
 			while(masSeguro.equals("1")) {
 				seguro = Integer.parseInt(input("Ingrese el numero del seguro que desea agregar"))  ;
 				segurosPosiciones.add(seguro);
-			masSeguro = input("Desea agregar otro seguro Si(1) , No(0)");
+				masSeguro = input("Desea agregar otro seguro Si(1) , No(0)");
 			}
-			 
-		conSeguro = true;
+			conSeguro = true;
 		}
 		
-	
+		
+		
 		
 		double valorSinSeguro= controllerEmpresa.ValorReservaSinSeguro(vehiculo,listaSedes,sedeD);
-		//Cliente clienteLogin = buscarClienteSistema(clienteAReservar.getNombre());
 		reservas.add(controllerEmpresa.CrearReservaCliente(clienteAReservar,valorSinSeguro,administradorGeneral,conSeguro, vehiculo,sedeR,sedeD,seguros,segurosPosiciones));
 		numeroReservaInteger+=1;
 		System.out.println("Creando la reserva... ");
 		Thread.sleep(100);
-		System.out.println("Valor a pagar es"+reservas.get(reservas.size()-1).getPrecio30());
+		System.out.println("Su valor a pagar es"+reservas.get(reservas.size()-1).getPrecio30());
 		System.out.println("Se hizo el cobro a la tarjeta del 30% del valor de la reserva");
-		
+		System.out.println("Cuando recoga el vehiculo se hara el cobro restante");
 		
 		 } catch (ParseException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}else if (option==4) {
-		guardarycerra();
+		 
 	}
+		guardarycerra();
+	
  } 
 
  
@@ -452,7 +452,7 @@ public int ProgramaEmpleadoRecogerCliente(Empleado empleado, Integer idVehiculoS
 		}else if(option==2) {
 			int opcion2  = Integer.parseInt(input("¿Que desea hacer? 1. Agregar Empleado o 2.Eliminar Empleado\n"));
 		    if (opcion2 == 1) {
-		    	agregarEmpleado();
+		    	//agregarEmpleado();
 		    }else if (opcion2 == 2) {
 		    	eliminarEmpleado();
 		    }
@@ -494,14 +494,14 @@ public int ProgramaEmpleadoRecogerCliente(Empleado empleado, Integer idVehiculoS
 	   
 }
 
-private void agregarEmpleado() {
+public int agregarEmpleado(String nombre2, String sede2, String usuario2, String contraseña2) {
        
 	   System.out.println("\n*******CREAR EMPLEADO***************\n");
 	   System.out.println("Por favor llene el formulario: \n");
-	   String nombre = input("Nombre: ");
-	   String sede = input("Sede: ");
-	   String usuario = input("Digite el nombre de usuario: ");
-	   String contraseña = input("Digite su contraseña ¡NO OLVIDAR!: ");
+	   String nombre = nombre2;
+	   String sede = sede2;
+	   String usuario = usuario2;
+	   String contraseña = contraseña2;
 	   
 	   Empleado worker = new Empleado(nombre, sede, usuario, contraseña, "Empleado");
 	   
@@ -512,6 +512,9 @@ private void agregarEmpleado() {
        }
 	   
 	   System.out.println("Empleado Agregado exitosamente \n");
+	   
+	   return 1;
+	   
 }
 
 public void crearUsuario(String nombre2, String nacionalidad2, String telefono2, String fechaNac2, String paisExp, String usuario2, String contraseña2, int nLicencia, String fechaVencLicen) throws ParseException {
@@ -777,6 +780,19 @@ public ArrayList<Integer> crearListaCarros() {
 	  }
 
 }
+
+
+public void sacarFechaSede(String idSede) {
+	Set<Date> fechas = calendario.keySet();
+
+    
+    for (Date fecha : fechas) {
+        // Obtiene el valor asociado a la clave :V
+        Integer valor = calendario.get(fecha);
+    }
+
+}
+
 	public void reservaV(EmpresaAlquilerVehiculos self, int id, Date fechaInicio, Date fechaFinal) throws ParseException{
 		Vehiculo coche = null;
 		//System.out.println(id);

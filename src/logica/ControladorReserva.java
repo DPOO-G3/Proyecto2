@@ -57,11 +57,7 @@ public class ControladorReserva {
 		
 		
 		//Calcula el total del precio de la reserva sin seguro
-	} 
-
-	
-	//Calcula el total del precio de la reserva sin seguro
-	public  Double ValorReservaSinSeguro(Vehiculo vehiculo,ArrayList<Sede> sedes,String sedeDevuelta) {
+	} public  Double ValorReservaSinSeguro(Vehiculo vehiculo,ArrayList<Sede> sedes,String sedeDevuelta) {
 		Tarifario tarifario = vehiculo.getCategoria().getTarifario();
 		Sede sede = buscarSedePorNombre(sedeDevuelta, sedes);
 		if(sede==null) 
