@@ -552,9 +552,9 @@ public static void main(String[] args) throws ParseException {
 	 programa.cargarReservasEnCalendario(programa);
 	 
 	// Imprimir el HashMap para ambos años
-     System.out.println("Fechas para 2023 y 2024:");
-     for (Map.Entry<Date, Integer> entry : EmpresaAlquilerVehiculos.calendario.entrySet()) {
-         System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());}
+     //System.out.println("Fechas para 2023 y 2024:");
+     //for (Map.Entry<Date, Integer> entry : EmpresaAlquilerVehiculos.calendario.entrySet()) {
+     //    System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());}
 	 
 	 //Abrir ventana
 	 InterfazPrincipal ventana = new InterfazPrincipal(programa);
@@ -567,15 +567,16 @@ public static void main(String[] args) throws ParseException {
 public void cargarReservasEnCalendario(EmpresaAlquilerVehiculos programa)
 {
 	for(Vehiculo i:programa.listaVehiculo) {
-		System.out.println(i.getIdVehiculo());
-		System.out.println(i.getPlaca());
+		//System.out.println(i.getIdVehiculo());
+		//System.out.println(i.getPlaca());
 		for(Map.Entry<Date, Integer> entry : EmpresaAlquilerVehiculos.calendario.entrySet())
 			{
 			 Date fecha = entry.getKey();
-			 
+			 //System.out.println(i.getFechaInicio());
 			if (i.getFechaInicio()!=null &&(fecha.compareTo(i.getFechaInicio()) >= 0  && fecha.compareTo(i.getFechaFinal()) <= 0)){
 				EmpresaAlquilerVehiculos.calendario.put(fecha, entry.getValue()+1);
-				System.out.println(entry.getKey());}
+				//System.out.println(entry.getKey());
+				}
 			}
 	}
 }
@@ -639,23 +640,23 @@ public static Map<Date, Integer> generarFechasDeDosAnios(int yearInicio, int yea
 	 }
  
  private void cargaPersistencia(Persistencia persistencia, EmpresaAlquilerVehiculos self) throws ParseException {
-	ArrayList<Cliente> listaClientesAux;
-	listaClientesAux = persistencia.cargarClientesAgregadosNuevos("./data/persistencia/clientes.txt\\");
-	listaClientes.addAll(listaClientesAux);
+	//ArrayList<Cliente> listaClientesAux;
+	//listaClientesAux = persistencia.cargarClientesAgregadosNuevos("./data/persistencia/clientes.txt\\");
+	//listaClientes.addAll(listaClientesAux);
 	
 	ArrayList<Reserva> reservasAux;
 	reservasAux = persistencia.cargarReservas("./data/persistencia/reservas.txt\\", self);
 	reservas.addAll(reservasAux);
 	numeroReservaInteger+=reservas.size();
 	//System.out.println(numeroReservaInteger);
-	for( Reserva i:self.reservas)
-	{
-		System.out.println(i.getFechaInicio());
-		System.out.println(i.getFechaFinal());
+	//for( Reserva i:self.reservas)
+	//{
+		//System.out.println(i.getFechaInicio());
+		//System.out.println(i.getFechaFinal());
 		//Vehiculo e = 
-		self.controllerEmpresa.ReservaVehiculo(i.getCategoriaVehiculo(), self.categoriaVehiculo, i.getSedeNombreRecoger(), i.getFechaInicio(), i.getFechaFinal(), self.listaSedes);
+		//self.controllerEmpresa.ReservaVehiculo(i.getCategoriaVehiculo(), self.categoriaVehiculo, i.getSedeNombreRecoger(), i.getFechaInicio(), i.getFechaFinal(), self.listaSedes);
 		//self.listaVehiculo.add(e);
-	}
+	//}
 	
 	
 	//for(i: Cliente)
@@ -780,6 +781,7 @@ public ArrayList<Integer> crearListaCarros() {
 
 }
 
+
 public void sacarFechaSede(String idSede) {
 	Set<Date> fechas = calendario.keySet();
 
@@ -789,4 +791,23 @@ public void sacarFechaSede(String idSede) {
         Integer valor = calendario.get(fecha);
     }
 
-}}
+}
+
+	public void reservaV(EmpresaAlquilerVehiculos self, int id, Date fechaInicio, Date fechaFinal) throws ParseException{
+		Vehiculo coche = null;
+		//System.out.println(id);
+		for(Vehiculo e: self.listaVehiculo)
+		{if( e.getIdVehiculo()== id ){coche = e;}
+		}
+		
+		if( coche.getFechaInicio() == null) {
+			coche.setFechaInicio(fechaInicio);
+						coche.setFechaFinal(fechaFinal);
+					}					
+		else if( fechaInicio.after(coche.getFechaFinal())||fechaFinal.before(coche.getFechaInicio())){
+			
+				coche.setFechaInicio(fechaInicio);
+				coche.setFechaFinal(fechaFinal);}					
+	}
+	
+}
