@@ -546,6 +546,7 @@ public static void main(String[] args) throws ParseException {
 	 InterfazPrincipal ventana = new InterfazPrincipal(programa);
 	 ventana.setLocationRelativeTo( null );
      ventana.setVisible( true );
+     
      Map<Date, Integer> mapaFechas = generarFechasDeDosAnios(2023, 2024);
 	 EmpresaAlquilerVehiculos.calendario = mapaFechas;
 	 ControllerCarga control = new ControllerCarga();
@@ -553,12 +554,7 @@ public static void main(String[] args) throws ParseException {
 	 Persistencia persistencia = new Persistencia();
 	 programa.cargaPersistencia(persistencia, programa);	
 	 programa.cargarReservasEnCalendario(programa);
-	 
-<<<<<<< HEAD
-
-=======
-	 //Imprimir el HashMap para ambos años
->>>>>>> branch 'master' of https://github.com/DPOO-G3/Proyecto2.git
+	
      System.out.println("Fechas para 2023 y 2024:");
      for (Map.Entry<Date, Integer> entry : EmpresaAlquilerVehiculos.calendario.entrySet()) {
          System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());}
@@ -567,6 +563,9 @@ public static void main(String[] args) throws ParseException {
 	 
 	 
 }
+
+
+
 public Map<Date, Integer> sacarFechaSede(String idSede) {
 	//Set<Date> fechas = calendario.keySet();
     
@@ -578,6 +577,10 @@ public Map<Date, Integer> sacarFechaSede(String idSede) {
      //Integer valor = calendario.get(fecha);
         
     //}
+	
+	for (Map.Entry<Date, Integer> entry : calendario.entrySet()) {
+        System.out.println("Fecha: " + entry.getKey() + ", Número8844: " + entry.getValue());
+    }
     return calendario;
 }
  
@@ -591,8 +594,9 @@ public void cargarReservasEnCalendario(EmpresaAlquilerVehiculos programa)
 			 Date fecha = entry.getKey();
 			 //System.out.println(i.getFechaInicio());
 			if (i.getFechaInicio()!=null &&(fecha.compareTo(i.getFechaInicio()) >= 0  && fecha.compareTo(i.getFechaFinal()) <= 0)){
-				EmpresaAlquilerVehiculos.calendario.put(fecha, entry.getValue()+1);
+				
 				//System.out.println(entry.getKey());
+				EmpresaAlquilerVehiculos.calendario.put(fecha, entry.getValue() + 1);
 				}
 			}
 	}

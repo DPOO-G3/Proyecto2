@@ -18,7 +18,7 @@ public class Calendario extends JFrame implements ActionListener {
     private JComboBox<Integer> yearComboBox;
     private JComboBox<String> monthComboBox;
     private JLabel monthLabel;
-    Map<Date, Integer> map;
+    private Map<Date, Integer> map;
 
     public Calendario(Map<Date, Integer> map) {
     	this.map =map;
@@ -84,7 +84,9 @@ public class Calendario extends JFrame implements ActionListener {
         model.setRowCount(0);
 
         int day = 1;
-
+       for (Map.Entry<Date, Integer> entry : map.entrySet()) {
+            System.out.println("Fecha: " + entry.getKey() + ", Número44: " + entry.getValue());
+        }
         for (int i = 0; i < 6; i++) {
             Object[] row = new Object[7];
             for (int j = 0; j < 7; j++) {
@@ -92,11 +94,17 @@ public class Calendario extends JFrame implements ActionListener {
                     row[j] = "";
                 } else {
                     row[j] = day;
-                  
-                    Date currentDate = new GregorianCalendar(selectedYear, selectedMonth, day).getTime();
+
+                    Calendar currentCalendar = new GregorianCalendar(selectedYear, selectedMonth, day, 0, 0, 0);
+                    Date currentDate = currentCalendar.getTime();
+
                     if (map.containsKey(currentDate)) {
-                        int value = map.get(currentDate);
-                        System.out.println();
+                    	
+
+                    	int value = map.getOrDefault(currentDate, 0);
+                    	System.out.println("Contenido del calendario:");
+                        
+                    
                         Color backgroundColor = calculateColor(value);
                         table.getColumnModel().getColumn(j).setCellRenderer(new CustomRenderer(backgroundColor));
                     }
@@ -117,8 +125,10 @@ public class Calendario extends JFrame implements ActionListener {
         float hue = 0.3f; 
         float saturation = 1.0f;
         float brightness = 0.5f + 0.5f * normalizedValue;
-
-        return Color.getHSBColor(hue, saturation, brightness);
+        Color color = Color.getHSBColor(hue, saturation, brightness);
+        
+        //System.out.println("Value: " + value + " Color: " + color);
+        return color;
     }
 
     
