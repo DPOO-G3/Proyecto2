@@ -96,6 +96,7 @@ public class Calendario extends JFrame implements ActionListener {
                     Date currentDate = new GregorianCalendar(selectedYear, selectedMonth, day).getTime();
                     if (map.containsKey(currentDate)) {
                         int value = map.get(currentDate);
+                        System.out.println();
                         Color backgroundColor = calculateColor(value);
                         table.getColumnModel().getColumn(j).setCellRenderer(new CustomRenderer(backgroundColor));
                     }
