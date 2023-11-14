@@ -554,7 +554,11 @@ public static void main(String[] args) throws ParseException {
 	 programa.cargaPersistencia(persistencia, programa);	
 	 programa.cargarReservasEnCalendario(programa);
 	 
+<<<<<<< HEAD
 	 //Imprimir el HashMap para ambos años
+=======
+	// Imprimir el HashMap para ambos años
+>>>>>>> branch 'master' of https://github.com/DPOO-G3/Proyecto2.git
      System.out.println("Fechas para 2023 y 2024:");
      for (Map.Entry<Date, Integer> entry : EmpresaAlquilerVehiculos.calendario.entrySet()) {
          System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());}
