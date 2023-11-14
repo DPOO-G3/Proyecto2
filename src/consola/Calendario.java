@@ -1,6 +1,7 @@
 package consola;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -57,7 +58,7 @@ public class Calendario extends JFrame implements ActionListener {
 
     private Integer[] getYearArray() {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        Integer[] years = new Integer[31]; // Puedes ajustar este rango según tus necesidades
+        Integer[] years = new Integer[31]; // Puedes ajustar este rango según tus necesidades hijo
         for (int i = 0; i < 31; i++) {
             years[i] = currentYear - 15 + i;
         }
@@ -91,6 +92,13 @@ public class Calendario extends JFrame implements ActionListener {
                     row[j] = "";
                 } else {
                     row[j] = day;
+                  
+                    Date currentDate = new GregorianCalendar(selectedYear, selectedMonth, day).getTime();
+                    if (map.containsKey(currentDate)) {
+                        int value = map.get(currentDate);
+                        Color backgroundColor = calculateColor(value);
+                        table.getColumnModel().getColumn(j).setCellRenderer(new CustomRenderer(backgroundColor));
+                    }
                     day++;
                 }
             }
@@ -98,6 +106,34 @@ public class Calendario extends JFrame implements ActionListener {
         }
 
         monthLabel.setText(getMonthArray()[selectedMonth] + " " + selectedYear);
+    }
+
+    private Color calculateColor(int value) {
+      
+        float normalizedValue = Math.min(1.0f, value / 10.0f); 
+
+     
+        float hue = 0.3f; 
+        float saturation = 1.0f;
+        float brightness = 0.5f + 0.5f * normalizedValue;
+
+        return Color.getHSBColor(hue, saturation, brightness);
+    }
+
+    // Custom TableCellRenderer to set background color
+    private static class CustomRenderer extends DefaultTableCellRenderer {
+        private final Color backgroundColor;
+
+        public CustomRenderer(Color backgroundColor) {
+            this.backgroundColor = backgroundColor;
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            setBackground(backgroundColor);
+            return this;
+        }
     }
 
     private int getStartDay(int year, int month) {
