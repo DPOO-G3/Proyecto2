@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -230,9 +232,9 @@ public class InterfazPrincipal extends JFrame {
 		return comple;
 	}
 
-	public void SacarFechasDeSede(String idSede) {
-	empresaAlquilerVehiculos.sacarFechaSede(idSede);
-		
+	public Map<Date, Integer> SacarFechasDeSede(String idSede) {
+		Map<Date, Integer> map = empresaAlquilerVehiculos.sacarFechaSede(idSede);
+		return map;
 	}
 
 	

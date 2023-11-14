@@ -13,7 +13,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-
+import java.util.Date;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -234,8 +235,8 @@ public class PanelAdminGeneral extends JPanel implements ActionListener {
 		}
 		else if (e.getSource()==consultarIDSedes) {
 			String idSede = textfieldsedes.getText();
-			interfazPrincipal.SacarFechasDeSede(idSede);
-            calendario = new Calendario();
+			Map<Date, Integer> map = interfazPrincipal.SacarFechasDeSede(idSede);
+            calendario = new Calendario(map);
             calendario.setVisible(true);
 		}
 		

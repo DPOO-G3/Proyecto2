@@ -6,7 +6,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Map;
 
 public class Calendario extends JFrame implements ActionListener {
     private DefaultTableModel model;
@@ -15,10 +17,12 @@ public class Calendario extends JFrame implements ActionListener {
     private JComboBox<Integer> yearComboBox;
     private JComboBox<String> monthComboBox;
     private JLabel monthLabel;
+    Map<Date, Integer> map;
 
-    public Calendario() {
+    public Calendario(Map<Date, Integer> map) {
+    	this.map =map;
         setTitle("Calendario");
-        setSize(400, 300);
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         model = new DefaultTableModel();
@@ -53,17 +57,16 @@ public class Calendario extends JFrame implements ActionListener {
 
     private Integer[] getYearArray() {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        Integer[] years = new Integer[currentYear - 2000 + 1];
-        for (int i = 2000; i <= currentYear; i++) {
-            years[i - 2000] = i;
+        Integer[] years = new Integer[31]; // Puedes ajustar este rango según tus necesidades
+        for (int i = 0; i < 31; i++) {
+            years[i] = currentYear - 15 + i;
         }
         return years;
     }
 
     private String[] getMonthArray() {
-        String[] months = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        return new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
                 "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-        return months;
     }
 
     private void updateCalendar() {
@@ -80,6 +83,7 @@ public class Calendario extends JFrame implements ActionListener {
         model.setRowCount(0);
 
         int day = 1;
+
         for (int i = 0; i < 6; i++) {
             Object[] row = new Object[7];
             for (int j = 0; j < 7; j++) {
@@ -93,14 +97,13 @@ public class Calendario extends JFrame implements ActionListener {
             model.addRow(row);
         }
 
-        // Actualizar el label del mes
         monthLabel.setText(getMonthArray()[selectedMonth] + " " + selectedYear);
     }
 
     private int getStartDay(int year, int month) {
         Calendar calendar = new GregorianCalendar(year, month, 1);
-        int startDay = calendar.get(Calendar.DAY_OF_WEEK) - 1; // Sunday is 0
-        return (startDay + 7) % 7; // Adjust for starting the week on Sunday
+        int startDay = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+        return (startDay + 7) % 7;
     }
 
     private int getNumberOfDays(int year, int month) {
@@ -141,7 +144,4 @@ public class Calendario extends JFrame implements ActionListener {
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Calendario());
-    }
 }

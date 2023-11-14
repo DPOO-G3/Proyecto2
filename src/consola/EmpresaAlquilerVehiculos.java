@@ -543,7 +543,10 @@ public static void main(String[] args) throws ParseException {
 	 
 	 EmpresaAlquilerVehiculos programa = new EmpresaAlquilerVehiculos();
 	//CRear Mapa de calendarios
-	 Map<Date, Integer> mapaFechas = generarFechasDeDosAnios(2023, 2024);
+	 InterfazPrincipal ventana = new InterfazPrincipal(programa);
+	 ventana.setLocationRelativeTo( null );
+     ventana.setVisible( true );
+     Map<Date, Integer> mapaFechas = generarFechasDeDosAnios(2023, 2024);
 	 EmpresaAlquilerVehiculos.calendario = mapaFechas;
 	 ControllerCarga control = new ControllerCarga();
 	 programa.cargaDatos(control);
@@ -551,17 +554,27 @@ public static void main(String[] args) throws ParseException {
 	 programa.cargaPersistencia(persistencia, programa);	
 	 programa.cargarReservasEnCalendario(programa);
 	 
-	// Imprimir el HashMap para ambos años
-     //System.out.println("Fechas para 2023 y 2024:");
-     //for (Map.Entry<Date, Integer> entry : EmpresaAlquilerVehiculos.calendario.entrySet()) {
-     //    System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());}
+	 //Imprimir el HashMap para ambos años
+     System.out.println("Fechas para 2023 y 2024:");
+     for (Map.Entry<Date, Integer> entry : EmpresaAlquilerVehiculos.calendario.entrySet()) {
+         System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());}
 	 
-	 //Abrir ventana
-	 InterfazPrincipal ventana = new InterfazPrincipal(programa);
-	 ventana.setLocationRelativeTo( null );
-     ventana.setVisible( true );
-     
+
 	 
+	 
+}
+public Map<Date, Integer> sacarFechaSede(String idSede) {
+	//Set<Date> fechas = calendario.keySet();
+    
+    
+    //for (Date fecha : fechas) {
+        // Obtiene el valor asociado a la clave :V
+      
+	
+     //Integer valor = calendario.get(fecha);
+        
+    //}
+    return calendario;
 }
  
 public void cargarReservasEnCalendario(EmpresaAlquilerVehiculos programa)
@@ -782,16 +795,7 @@ public ArrayList<Integer> crearListaCarros() {
 }
 
 
-public void sacarFechaSede(String idSede) {
-	Set<Date> fechas = calendario.keySet();
 
-    
-    for (Date fecha : fechas) {
-        // Obtiene el valor asociado a la clave :V
-        Integer valor = calendario.get(fecha);
-    }
-
-}
 
 	public void reservaV(EmpresaAlquilerVehiculos self, int id, Date fechaInicio, Date fechaFinal) throws ParseException{
 		Vehiculo coche = null;
