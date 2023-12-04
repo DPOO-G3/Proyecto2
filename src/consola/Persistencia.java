@@ -63,7 +63,6 @@ public class Persistencia {
 	}
 	
 	
-	
 	public ArrayList<Reserva> cargarReservas(String archivoReservas, EmpresaAlquilerVehiculos self) throws ParseException 
     {
 		FileReader archivo;

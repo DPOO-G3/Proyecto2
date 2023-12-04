@@ -60,13 +60,7 @@ public class InterfazRegistrarReservaEmpleado extends JFrame implements ActionLi
 		add(panelInterfaz);
 		getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
 		setSize(760,230);
-		setResizable(false);
-		
-		 
-		
-		
-	
-	
+		setResizable(false);	
 	}
 	
 

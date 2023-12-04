@@ -46,6 +46,7 @@ public class InterfazPrincipal extends JFrame {
 	}
 
 
+	
 	//Intefaz del Regrsiro del Vehiculo
 	public void agregarLabel(String nombre,ArrayList<JLabel> listaLabels)
     {
