@@ -46,56 +46,71 @@ public class Reserva {
 		return identificador;
 	}
 
+	
 	public String getCategoriaVehiculo() {
 		return categoriaVehiculo;
 	}
 
+	
 	public Date getFechaInicio() {
 		return FechaInicio;
 	}
 
+	
 	public Date getFechaFinal() {
 		return FechaFinal;
 	}
 
+	
 	public double getPrecio30() {
 		return precio30;
 	}
 
+	
 	public double getPrecioRestante() {
 		return precioRestante;
 	}
 
+	
 	public double getPrecioTotal() {
 		return precioTotal;
 	}
 
+	
 	public String getSedeNombreRecoger() {
 		return sedeNombreRecoger;
 	}
 
+	
 	public String getSedeNombreDevolver() {
 		return sedeNombreDevolver;
 	}
 
+	
 	public void setConductorAdicional(ConductorAdicional conductorAdicional) {
 		this.conductorAdicional = conductorAdicional;
 	}
 
+	
 	public void setVehiculoRecogido(boolean vehiculoRecogido) {
 		this.vehiculoRecogido = vehiculoRecogido;
 	}
 
+	
 	public Vehiculo getVehiculo() {
 		return vehiculo;
 	}
 
+	
 	public int getNumeroTarjeta() {
 		return numeroTarjeta;
 	}
+	
+	
 	public ConductorAdicional getConductorAdicional(){
 		return conductorAdicional;
 	}
+	
 	
 	public boolean getVehiculoRecogido() {
 		return vehiculoRecogido;
@@ -107,18 +122,11 @@ public class Reserva {
 		return idVehiculo;
 	}
 	
+	
 	public String getNombrePersona() {
 		return nombrePersona;
-		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}
+		
 }
 	
 

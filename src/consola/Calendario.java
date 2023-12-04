@@ -139,6 +139,7 @@ public class Calendario extends JFrame implements ActionListener {
             this.backgroundColor = backgroundColor;
         }
 
+        
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

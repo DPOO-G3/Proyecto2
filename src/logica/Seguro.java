@@ -10,20 +10,23 @@ public class Seguro {
 		this.precio = precio;
 	}
 
+	
 	public double getPrecio() {
 		return precio;
 	}
 
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
+	
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+	
+	
 	public String getnombre() {
 		return nombre;
 	}
-
-	
 }

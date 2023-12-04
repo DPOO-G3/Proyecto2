@@ -141,6 +141,7 @@ public class PanelAdminLocal  extends JPanel implements ActionListener{
 		add(panelEliminarU,c);
 	}
 	
+	
 	private void cargarImagen() {
 		try {
 			imagen  = ImageIO.read(new File("./data/Imagenes/usuario.png"));
@@ -150,10 +151,12 @@ public class PanelAdminLocal  extends JPanel implements ActionListener{
 		}
 	}
 	
+	
 	public void agregarLabel(String nombre,ArrayList<JLabel> listaLabels) {
 		JLabel label = new JLabel(nombre);
         listaLabels.add(label);
 	}
+	
 	
 	public ArrayList<JTextField> crearJtextFieldsParaLabels(ArrayList<JLabel> listaLabels,JPanel panel, int primeraColumna,int inicioDesde0) {
 		ArrayList<JTextField> listaJTextFields = new ArrayList<JTextField>();
@@ -197,10 +200,12 @@ public class PanelAdminLocal  extends JPanel implements ActionListener{
 		return listaJTextFields;
 	}
 	
+	
 	public void RegistrarClienteNuevo(String nombre, String nacionalidad, String telefono, String fechaNac, String paisExp, String usuario, String contraseña, int nLicencia, String fechaVencLicen) throws ParseException {
 		interfazPrincipal.registrarClienteNeuvo(nombre,nacionalidad,telefono,fechaNac,paisExp,usuario, contraseña, nLicencia,fechaVencLicen);
 		
 	}
+	
 	
 	public int RegistrarEmpleadoNuevo(String nombre, String sede, String usuario, String contraseña) {
 		// TODO Auto-generated method stub

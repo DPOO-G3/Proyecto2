@@ -25,31 +25,35 @@ public class Sede {
 		this.administradorLocal = administradorLocal;
 	}
 	
+	
 	//Getters and Setters
 	public ArrayList<Vehiculo> getInventarioVehiculos() {
 		return inventarioVehiculos;
 	}
 	
+	
 	public void setInventarioVehiculos(ArrayList<Vehiculo> inventarioVehiculos) {
 		this.inventarioVehiculos = inventarioVehiculos;
 	}
 
+	
 	public String getNombre() {
 		return nombre;
 	}
+	
+	
 	public ArrayList<Empleado> getEmpleados(){
 		return empleados;
 	}
 	
+	
 	public String getDiasHorasAtencion() {
 		return diasHorasAtencion;
 	}
+	
+	
 	public String getUbicacion() {
 		return ubicacion;
 	}
-	
-
-	
-
 	
 }

@@ -89,6 +89,7 @@ public class PanelLogin extends JPanel implements ActionListener{
 		
 	}
 	
+	
 	private void cargarImagen() {
 		try {
             imagen = ImageIO.read(new File("./data/Imagenes/logo.png")); 	
@@ -100,6 +101,7 @@ public class PanelLogin extends JPanel implements ActionListener{
         }
 	}
 
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("Ingresar")) {

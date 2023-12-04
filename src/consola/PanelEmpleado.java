@@ -165,6 +165,7 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 		
 	}
 	
+	
 	private void cargarImagen() {
 		try {
 			imagen  = ImageIO.read(new File("./data/Imagenes/usuario.png"));
@@ -175,11 +176,11 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 	}
 	
 
-	
 	public void agregarLabel(String nombre,ArrayList<JLabel> listaLabels) {
 		JLabel label = new JLabel(nombre);
         listaLabels.add(label);
 	}
+	
 	
 	public int CrearReservaNueva(String categoria, String sedeRecoger, String fechaInicial, String fechaFinal, String sedeDevolver, String nombreCliente) {
 		int estaHecha = interfazPrincipal.buscarClienteYCrearReservaCliente(categoria, sedeRecoger, fechaInicial, fechaFinal, sedeDevolver, nombreCliente);
@@ -187,8 +188,6 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 	}
 	
 	
-
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -219,8 +218,6 @@ public class PanelEmpleado extends JPanel implements ActionListener{
     		
 		
 	    }
-	
-	
 	
 	
 	public ArrayList<JTextField> crearJtextFieldsParaLabels(ArrayList<JLabel> listaLabels,JPanel panel, int primeraColumna,int inicioDesde0) {
@@ -265,17 +262,13 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 		return listaJTextFields;
 	}
 
+	
 	public void actualizarUsuariosBox() {
 	    ArrayList<Integer> listaCarros = interfazPrincipal.listaCarros();
 	    Integer[] arrayCarros = listaCarros.toArray(new Integer[0]);
 	    usuariosBox.setModel(new JComboBox<>(arrayCarros).getModel());
 	}
 
-	
-	
-	
-	
-	
 
 }
 

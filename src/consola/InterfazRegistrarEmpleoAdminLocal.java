@@ -62,9 +62,6 @@ public class InterfazRegistrarEmpleoAdminLocal extends JFrame implements ActionL
 	}
 	
 	
-	
-	
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()== botonRegistrar) {

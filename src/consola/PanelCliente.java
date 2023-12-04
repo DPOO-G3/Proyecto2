@@ -127,6 +127,7 @@ public class PanelCliente extends JPanel implements ActionListener{
 				add(panelInferior,c);
 	}
 	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -150,10 +151,12 @@ public class PanelCliente extends JPanel implements ActionListener{
 		}
 	}
 	
+	
 	public void agregarLabel(String nombre,ArrayList<JLabel> listaLabels) {
 		JLabel label = new JLabel(nombre);
         listaLabels.add(label);
 	}
+	
 	
 	public ArrayList<JTextField> crearJtextFieldsParaLabels(ArrayList<JLabel> listaLabels,JPanel panel, int primeraColumna,int inicioDesde0) {
 		ArrayList<JTextField> listaJTextFields = new ArrayList<JTextField>();

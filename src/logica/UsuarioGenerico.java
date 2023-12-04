@@ -5,24 +5,25 @@ public class UsuarioGenerico {
  private String contraseña;
  private String tipoUsuario;
 
- public UsuarioGenerico(String usuario, String contraseña, String tipoUsuario) {
-	 this.tipoUsuario = tipoUsuario;
-	 this.usuario = usuario;
-	 this.contraseña = contraseña;
- }
- 
- 
- 
- public String getUsuario() {
-	return usuario;
-}
-public String getContraseña() {
-	return contraseña;
-}
-public String getTipoUsuario() {
-	return tipoUsuario;
-}
- 
- 
+	 public UsuarioGenerico(String usuario, String contraseña, String tipoUsuario) {
+		 this.tipoUsuario = tipoUsuario;
+		 this.usuario = usuario;
+		 this.contraseña = contraseña;
+	 }
+	 
+	 
+	 public String getUsuario() {
+		return usuario;
+	}
+	 
+	 
+	public String getContraseña() {
+		return contraseña;
+	}
+	
+	
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
  
 }

@@ -3,12 +3,17 @@ package logica;
 public class ConductorAdicional {
 
 	
-	 private LicienciaConducion licienciaConducion;
+	private LicienciaConducion licienciaConducion;
 
-	public ConductorAdicional(LicienciaConducion licienciaConducion) {
+	
+	public ConductorAdicional(LicienciaConducion licienciaConducion) 
+	{
 		this.licienciaConducion = licienciaConducion;
 	}
-	public LicienciaConducion getLicenciaConducion() {
+	
+	
+	public LicienciaConducion getLicenciaConducion() 
+	{
 		return licienciaConducion;
 	}
 }

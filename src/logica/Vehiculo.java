@@ -46,94 +46,118 @@ public class Vehiculo {
 	
 	
 	//Getters and Setters
-	
-	
-	
-	public CategoriaVehiculo getCategoria() {
-		return categoria;}
+	public CategoriaVehiculo getCategoria() 
+	{
+		return categoria;
+	}
 
-	public int getIdVehiculo() {
+	
+	public int getIdVehiculo() 
+	{
 		return idVehiculo;
 	}
 
 
-	public Date getFechaInicio() {
+	public Date getFechaInicio() 
+	{
 		return fechaInicio;
 	}
-	public void setFechaInicio(Date fechaInicio) {
+	
+	
+	public void setFechaInicio(Date fechaInicio) 
+	{
 		this.fechaInicio = fechaInicio;
 	}
-	public Date getFechaFinal() {
+	
+	
+	public Date getFechaFinal() 
+	{
 		return fechaFinal;
 	}
-	public void setFechaFinal(Date fechaFinal) {
+	
+	
+	public void setFechaFinal(Date fechaFinal) 
+	{
 		this.fechaFinal = fechaFinal;
 	}
 	
 	
-	public Sede getSedeActual() {
+	public Sede getSedeActual() 
+	{
 		return sedeActual;
 	}
-	public String getRutaImagen() {
+	
+	
+	public String getRutaImagen() 
+	
+	{
 		return rutaArchivoImagen;
 	}
+	
 	
 	public void setConSeguro(boolean conSeguro) {
 		this.conSeguro = conSeguro;
 	}
+	
+	
 	public String getSede()
     {
     	return sedeInicial;
     }	
 
+	
 	public boolean getAlquilado() {
 		return alquilado;
 	}
+	
 	
 	public String getSedeString() {
 		return sedeInicial;
 	}
 	
+	
 	public int getCapacidad() {
 		return capacidad;
 	}
+	
 	
 	public String getPlaca() {
 		return placa;
 	}
 	
+	
 	public String getModelo() {
 		return modelo;
 	}
+	
 	
 	public String getColor() {
 		return color;
 	}
 	
+	
 	public String getTipoTransmision() {
 		return tipoTransmision;
 	}
+	
+	
 	public void setFuncional(boolean funcional) {
 		this.funcional = funcional;
 	}
+	
+	
 	public void setSedeActual(Sede sedeActual) {
 		this.sedeActual = sedeActual;
 	}
+	
+	
 	public void setAlquilado (boolean alquilado) {
 		this.alquilado = alquilado;
 	}
+	
+	
 	public boolean isFuncional() {
 		return funcional;
 	}
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
+		
 }

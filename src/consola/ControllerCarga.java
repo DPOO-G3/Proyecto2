@@ -22,7 +22,8 @@ import logica.Vehiculo;
 
 public class ControllerCarga {
 
-
+    //Cargas completas de la informacion de la empresa
+	
 	public ArrayList<AdministradorLocal> cargarAdministradorLocal(String archivoAdmiLocal) 
     {
 		FileReader archivo;
@@ -58,6 +59,7 @@ public class ControllerCarga {
 		}
 		return adminLocal;	
 	}
+	
 	
 	public AdministradorGeneral cargarAdministradorGeneral(String archivoAdministradorGeneral) 
 	{
@@ -95,6 +97,7 @@ public class ControllerCarga {
 		
 		return admiGeneral;
 	}
+	
 	
 	public ArrayList<Cliente> cargarClientes(String archivoClientes) throws ParseException 
     {
@@ -180,6 +183,7 @@ public class ControllerCarga {
 		return empleados;
 	}
 	
+	
 	public ArrayList<Vehiculo> cargarVehiculos(ArrayList<CategoriaVehiculo> categoriaVehiculos,String archivoVehiculos) 
 	{
 		FileReader archivo;
@@ -225,6 +229,7 @@ public class ControllerCarga {
 		}
 		return Vehiculos;	
 	}
+	
 	
     public ArrayList<Sede> cargarSedes(ArrayList<Empleado> lEmpleado, ArrayList<Vehiculo> lVehiculos, ArrayList<AdministradorLocal> lAdmiLocal, String ArchivoSede) 
 	{
@@ -305,6 +310,7 @@ public class ControllerCarga {
 		
 	}
 	
+    
     public ArrayList<CategoriaVehiculo> cargarCategoria(String categoriaVehiculo) 
     {
 		FileReader archivo;
@@ -341,6 +347,7 @@ public class ControllerCarga {
 		}
 		return vcArrayList;
 	}
+    
     
     public ArrayList<UsuarioGenerico> cargaUsuarios(ArrayList<Empleado> LEmpleado,ArrayList<Cliente> listaClientes,ArrayList<AdministradorLocal> lAdmiLocal,AdministradorGeneral LAdmiGene) {
 

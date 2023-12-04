@@ -11,6 +11,8 @@ public  class Tarifario {
 	private  double valorExtra2Conduc;
 	private final int mestemporadaAltaInicio =5;
 	private final int mestemporadaAltaFinal =7;
+	
+	
 	//Toca poner una tarifa 
 	public Tarifario(double aumentoTemporada,double valorExtraOtraSede,double valorExtraOtrasede) {
 		this.aumentoTemporada = aumentoTemporada;
@@ -19,25 +21,45 @@ public  class Tarifario {
 	}
 
 	
-	public double getAumentoTemporada() {
+	public double getAumentoTemporada() 
+	{
 		return aumentoTemporada;
 	}
-	public  void setAumentoTemporada(double aumentoTemporada) {
+	
+	
+	public  void setAumentoTemporada(double aumentoTemporada) 
+	{
 		this.aumentoTemporada = aumentoTemporada;
 	}
-	public  double getValorExtraOtraSede() {
+	
+	
+	public  double getValorExtraOtraSede() 
+	{
 		return valorExtraOtraSede;
 	}
-	public void setValorExtraOtraSede(double valorExtraOtraSede) {
+	
+	
+	public void setValorExtraOtraSede(double valorExtraOtraSede) 
+	{
 		this.valorExtraOtraSede = valorExtraOtraSede;
 	}
-	public  double getValorExtra2Conduc() {
+	
+	
+	public  double getValorExtra2Conduc() 
+	{
 		return valorExtra2Conduc;
 	}
-	public  void setValorExtra2Conduc(double valorExtra2Conduc) {
+	
+	
+	public  void setValorExtra2Conduc(double valorExtra2Conduc) 
+	{
 		this.valorExtra2Conduc = valorExtra2Conduc;
 	}
-	public  boolean TemporadaAlta (Date fecha1 , Date fecha2) {
+	
+	
+	public  boolean TemporadaAlta (Date fecha1 , Date fecha2) 
+	
+	{
 		 
 		Calendar calendario = Calendar.getInstance();
 		calendario.setTime(fecha1);
@@ -47,5 +69,6 @@ public  class Tarifario {
 		
 		return mesFecha1>= mestemporadaAltaInicio && mesFecha2 <= mestemporadaAltaFinal;
 	}
-	// Funcion que revisa si esta en temporada alta o temporada baja
+	
+
 }

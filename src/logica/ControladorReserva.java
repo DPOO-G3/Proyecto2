@@ -9,8 +9,7 @@ public class ControladorReserva {
 	//Verificar datos ingresados por el usuario
 	public Vehiculo ReservaVehiculo(String categoria , ArrayList<CategoriaVehiculo> categoriaVehiculo , String nombreSede ,Date fechaInicio,Date fechaFinal ,ArrayList<Sede> listaSedes) throws ParseException{
 		
-		
-		
+
 		boolean encontrado = false;
 		 for (CategoriaVehiculo  categorias :categoriaVehiculo) {
 			 if(categoria.equalsIgnoreCase(categorias.getNombreCategoria())) {
@@ -57,7 +56,10 @@ public class ControladorReserva {
 		
 		
 		//Calcula el total del precio de la reserva sin seguro
-	} public  Double ValorReservaSinSeguro(Vehiculo vehiculo,ArrayList<Sede> sedes,String sedeDevuelta) {
+	} 
+	
+	
+	public  Double ValorReservaSinSeguro(Vehiculo vehiculo,ArrayList<Sede> sedes,String sedeDevuelta) {
 		Tarifario tarifario = vehiculo.getCategoria().getTarifario();
 		Sede sede = buscarSedePorNombre(sedeDevuelta, sedes);
 		if(sede==null) 
@@ -66,20 +68,24 @@ public class ControladorReserva {
 		long tiempodiferencia=vehiculo.getFechaInicio().getTime()-vehiculo.getFechaFinal().getTime();
 		long diasDiferencia = tiempodiferencia / (24 * 60 * 60 * 1000);
 		int numeroDias = (int) (diasDiferencia + 1);
+		
 		if(sedeDevuelta.equalsIgnoreCase(vehiculo.getSedeActual().getNombre())) {
 			tarifario.setValorExtraOtraSede(0);
 		}
+		
 		if(!tarifario.TemporadaAlta(vehiculo.getFechaInicio(), vehiculo.getFechaFinal())) {
 			tarifario.setAumentoTemporada(0);
 		}
-		 Double tarifaTotalSinSeguro=(precioCategoria*numeroDias)+(tarifario.getAumentoTemporada())+tarifario.getValorExtraOtraSede();
-		 return tarifaTotalSinSeguro;
+		
+		Double tarifaTotalSinSeguro=(precioCategoria*numeroDias)+(tarifario.getAumentoTemporada())+tarifario.getValorExtraOtraSede();
+		return tarifaTotalSinSeguro;
 	} 
 	
 	
 	public Reserva CrearReservaCliente(Cliente cliente,double valorSinSeguro ,
 			AdministradorGeneral administradorGeneral,boolean conSeguro,
 			Vehiculo vehiculo,String sedeDevolver,String sederecoger,ArrayList<Seguro> seguros,ArrayList<Integer> posiciones) {
+		
 		double precioSeguro = administradorGeneral.administrarSeguro(seguros,posiciones,conSeguro,vehiculo);
 		double precioTotal = valorSinSeguro + precioSeguro;
 		double precio30 = precioTotal*0.3;
@@ -87,6 +93,7 @@ public class ControladorReserva {
 		Reserva reserva = cliente.crearReserva(vehiculo,vehiculo.getFechaInicio(), vehiculo.getFechaFinal(), precio30, precioRestante,sedeDevolver,sederecoger);
 		return reserva;
 	}
+
 	
 	public Reserva CrearReservaACliente(Cliente cliente,double valorSinSeguro ,
 			AdministradorGeneral administradorGeneral,boolean conSeguro,
@@ -109,6 +116,7 @@ public class ControladorReserva {
 			}
 		}return sedeABuscarSede;
 	}
+
 	}
 	/*
 	private int numeroDiaAtencionSede(String fecha,int posicion) {

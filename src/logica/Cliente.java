@@ -30,34 +30,45 @@ public  class Cliente extends UsuarioGenerico {
 	}
  
  
-  public String getNombre() {
-	return nombre;
-  }
+    public String getNombre() 
+    {
+    	return nombre;
+    }
 
-  public MedioDePago getMedioDePago() {
-	  return medioDePago;
-  }
+   
+    public MedioDePago getMedioDePago() 
+    {
+	   return medioDePago;
+    }
 
-public Reserva crearReserva(Vehiculo vehiculo,Date fechaInicio,Date FechaFinal,double precio30 ,double precioRestante,String sedeDevolver,String sedeRecoger) {
+   
+    public Reserva crearReserva(Vehiculo vehiculo,Date fechaInicio,Date FechaFinal,double precio30 ,double precioRestante,String sedeDevolver,String sedeRecoger) 
+    {
 	  Reserva reserva = new Reserva(EmpresaAlquilerVehiculos.getNumeroReservaInteger(),vehiculo.getCategoria().getNombreCategoria(),
 			  fechaInicio,FechaFinal,precio30,precioRestante,
 			  precio30+precioRestante,numeroTarjeta,
 			  sedeRecoger,sedeDevolver,null,false,vehiculo,nombre);	
-	  			reservas = new ArrayList<Reserva>();
-	  			reservas.add(reserva);
-	  			return reserva;
- }
+	  reservas = new ArrayList<Reserva>();
+	  reservas.add(reserva);
+	  return reserva;
+    }
 
   
-  public  ArrayList<Reserva> getReservas() {
-	return reservas;
-  }
-  public  int getNumeroTarjeta () {
+    public  ArrayList<Reserva> getReservas() 
+    {
+	  return reservas;
+    }
+    
+    
+    public  int getNumeroTarjeta () 
+    {
 	  return numeroTarjeta;
-  }
-  
-  public String getFechaNac()
-  {
+    }
+
+    
+    public String getFechaNac()
+    {
 	  return fechaNac;
-  }
+    }
+    
 }

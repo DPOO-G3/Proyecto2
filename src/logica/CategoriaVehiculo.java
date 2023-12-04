@@ -15,20 +15,23 @@ public class CategoriaVehiculo {
  }
  
  
- public String getNombreCategoria() {
-	return nombreCategoria;
- }
-
-
-public Tarifario getTarifario() {
-	return tarifario;
-}
-
-
-public double getTarifaDiaria() {
-	return tarifaDiaria;
-}
-
+	 public String getNombreCategoria() 
+	 {
+		return nombreCategoria;
+	 }
+	
+	
+	 public Tarifario getTarifario() 
+	 {
+		return tarifario;
+	 }
+	
+	
+	 public double getTarifaDiaria() 
+	 {
+		return tarifaDiaria;
+	 }
+	
 
 
 

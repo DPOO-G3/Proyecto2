@@ -38,50 +38,22 @@ public class InterfazPrincipal extends JFrame {
 	private PanelCliente panelCliente;
 	private PanelEmpleado panelEmpleado;
 
-	
-
-	public InterfazPrincipal(EmpresaAlquilerVehiculos empresaAlquilerVehiculos) {
-		this.empresaAlquilerVehiculos = empresaAlquilerVehiculos;
-		panelLogin = new PanelLogin(empresaAlquilerVehiculos,this);
-		
-		
-		
-		add(panelLogin);
-		setSize(new Dimension(650,550));
-		setResizable(false);
-		
-			}
-	
-	public void interfazAdminGeneral() {
-		panelAdminGeneral = new PanelAdminGeneral(this);
-		
-		JFrame  JframeAdminGeneral = new JFrame();
-		JframeAdminGeneral.setLayout( new GridLayout(1,1) );
-		JframeAdminGeneral.add(panelAdminGeneral,BorderLayout.CENTER);
-		JframeAdminGeneral.setVisible(true);
-		JframeAdminGeneral.add(panelAdminGeneral);
-		JframeAdminGeneral.pack();
-		JframeAdminGeneral.setLocationRelativeTo(this);
-		
-		
-	}
-	public void eliminarVehiculoInventario(int ID)
+	public void PantallaReserva()
 	{
-		empresaAlquilerVehiculos.darDeBajaVehiculoAdmin(ID);
-	}	
-	
-	public void buscarAutoporId(int ID) {
-		Vehiculo vehiculo = empresaAlquilerVehiculos.buscarAutoPorId(ID);
-		panelAdminGeneral.actualizarAuto(vehiculo);
-	}
-	public void interfazRegistrarVehiculoAdmin() {
 		interfazRegistrarVehiculo = new InterfazRegistrarVehiculo(this);
 		interfazRegistrarVehiculo.setVisible(true);
+		
 	}
-	public void agregarLabel(String nombre,ArrayList<JLabel> listaLabels) {
+
+
+	//Intefaz del Regrsiro del Vehiculo
+	public void agregarLabel(String nombre,ArrayList<JLabel> listaLabels)
+    {
 		JLabel label = new JLabel(nombre);
         listaLabels.add(label);
 	}
+	
+	
 	public ArrayList<JTextField> crearJtextFieldsParaLabels(ArrayList<JLabel> listaLabels,JPanel panel, int primeraColumna,int inicioDesde0) {
 		ArrayList<JTextField> listaJTextFields = new ArrayList<JTextField>();
 		for ( int i=0;i<listaLabels.size();i++) {
@@ -123,11 +95,33 @@ public class InterfazPrincipal extends JFrame {
 		}
 		return listaJTextFields;
 	}
+	
+	
+	
+	
+	//Admin General
 	public void RegistrarVehiculoSistema(String nombreSedeString
 			 ,String modelo ,int capacidad,
 			 String placa, String color,String tipoTransmision,String categoriaVehiculo ,String rutaarchivo,int idVehiculo) {
 		empresaAlquilerVehiculos.modificarVehiculoAdministradorGeneral(nombreSedeString, modelo, capacidad, placa, color, tipoTransmision, categoriaVehiculo, rutaarchivo, idVehiculo);;
 	}
+	
+	
+	
+	
+	//Interfaz de los usuarios
+	public InterfazPrincipal(EmpresaAlquilerVehiculos empresaAlquilerVehiculos) {
+		this.empresaAlquilerVehiculos = empresaAlquilerVehiculos;
+		panelLogin = new PanelLogin(empresaAlquilerVehiculos,this);
+		
+		
+		
+		add(panelLogin);
+		setSize(new Dimension(650,550));
+		setResizable(false);
+		
+    }
+	
 	
 	public void interfazAdminLocal(String usuario , String contransenia) {
 		AdministradorLocal administradorLocal = empresaAlquilerVehiculos.buscarAdministradorLocalPorLogin(usuario, contransenia);
@@ -143,6 +137,7 @@ public class InterfazPrincipal extends JFrame {
 		
 	}
 	
+	
 	public void interfazEmpleado(String usuario , String contransenia) {
 		Empleado empleado = empresaAlquilerVehiculos.buscarEmpleadoPorLogin(usuario, contransenia);
 		panelEmpleado = new PanelEmpleado(this,empleado);
@@ -157,6 +152,7 @@ public class InterfazPrincipal extends JFrame {
 		
 	}
 	
+	
 	public void interfazCliente(String usuario , String contransenia) {
 		Cliente cliente = empresaAlquilerVehiculos.buscarClientePorLogin(usuario, contransenia);
 		panelCliente = new PanelCliente(this,cliente.getNombre(),cliente.getUsuario(),cliente.getFechaNac(),cliente.getContraseña());
@@ -167,24 +163,45 @@ public class InterfazPrincipal extends JFrame {
 		JframeAdminLocal.add(panelCliente);
 		JframeAdminLocal.setResizable(false);
 		JframeAdminLocal.setSize(600,350);
-		
-		
 	}  
-	public ArrayList<String> listaUsuariosSistema(){
+	
+	
+	public void interfazAdminGeneral()
+	   {
+			panelAdminGeneral = new PanelAdminGeneral(this);
+			
+			JFrame  JframeAdminGeneral = new JFrame();
+			JframeAdminGeneral.setLayout( new GridLayout(1,1) );
+			JframeAdminGeneral.add(panelAdminGeneral,BorderLayout.CENTER);
+			JframeAdminGeneral.setVisible(true);
+			JframeAdminGeneral.add(panelAdminGeneral);
+			JframeAdminGeneral.pack();
+			JframeAdminGeneral.setLocationRelativeTo(this);
+			
+			
+		}
+	
+	
+	
+	
+	//Admin local
+	public ArrayList<String> listaUsuariosSistema()
+	{
 		return empresaAlquilerVehiculos.crearListaUsuario();
 	}
 
-	public void PantallaReserva() {
-		interfazRegistrarVehiculo = new InterfazRegistrarVehiculo(this);
-		interfazRegistrarVehiculo.setVisible(true);
-		
-	}
-
-	public ArrayList<Integer> listaCarros() {
+	
+	
+	
+	//Emplado - Empresa Aluiler Vehiculos
+	public ArrayList<Integer> listaCarros() 
+	{
 		return empresaAlquilerVehiculos.crearListaCarros();
 	}
 	
 	
+	
+	//Busqueda de Cliente
 	public int buscarClienteYCrearReservaCliente(String categoria, String sedeRecoger, String fechaInicial, String fechaFinal, String sedeDevolver, String nombreCliente)//Llenar con parametros mateo);
 	{
 		
@@ -197,6 +214,10 @@ public class InterfazPrincipal extends JFrame {
 		return 1; }
 	}
 	
+	
+	
+	
+	//Reserva
 	public void realizarReservaCliente(String categoria, String sedeR, String fechaA, String fechaF, String sedeD, String usuario, String contrasenia,int reservaOAlquiler, String quienRealiza )
 	{
 		//0 si es reserva, 1 si es alquiler ( El tipo, ultimo parametro)
@@ -210,21 +231,31 @@ public class InterfazPrincipal extends JFrame {
 		}
 	}
 
+	
+	
+	
+	//Panel Emepleado
 	public int DevolverCarro(Integer idVehiculoSeleccionado, Empleado empleado) {
 		int hecha = empresaAlquilerVehiculos.ProgramaEmpleadoDevolucion(idVehiculoSeleccionado,empleado);
 		return hecha;
 	}
 
+	
 	public int RecibirCarroCliente(Empleado empleado, Integer idVehiculoSeleccionado) {
 		int hecho = empresaAlquilerVehiculos.ProgramaEmpleadoRecogerCliente(empleado, idVehiculoSeleccionado);
 		return hecho;
 	}
 
+	
+	
+	
+	//Panel Admin Local
 	public void registrarClienteNeuvo(String nombre, String nacionalidad, String telefono, String fechaNac, String paisExp, String usuario, String contraseña, int nLicencia, String fechaVencLicen) throws ParseException {
 		empresaAlquilerVehiculos.crearUsuario(nombre,nacionalidad,telefono,fechaNac,paisExp,usuario, contraseña, nLicencia,fechaVencLicen);
 		
 	}
 
+	
 	public int registraEmpleadoNuevo(String nombre, String sede, String usuario, String contraseña) {
 		// TODO Auto-generated method stub
 		int comple = empresaAlquilerVehiculos.agregarEmpleado(nombre, sede, usuario, contraseña);
@@ -232,12 +263,31 @@ public class InterfazPrincipal extends JFrame {
 		return comple;
 	}
 
+	
+	
+	
+	//Panel Admin general
 	public Map<Date, Integer> SacarFechasDeSede(String idSede) {
 		Map<Date, Integer> map = empresaAlquilerVehiculos.sacarFechaSede(idSede);
 		return map;
 	}
 
 	
-
+	public void interfazRegistrarVehiculoAdmin() {
+		interfazRegistrarVehiculo = new InterfazRegistrarVehiculo(this);
+		interfazRegistrarVehiculo.setVisible(true);
+	}
 	
+
+	public void eliminarVehiculoInventario(int ID)
+	{
+		empresaAlquilerVehiculos.darDeBajaVehiculoAdmin(ID);
+	}
+	
+	
+	public void buscarAutoporId(int ID) 
+	{
+		Vehiculo vehiculo = empresaAlquilerVehiculos.buscarAutoPorId(ID);
+		panelAdminGeneral.actualizarAuto(vehiculo);
+	}
 }

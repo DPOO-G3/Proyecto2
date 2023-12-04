@@ -62,14 +62,9 @@ public class InterfazRegistrarVehiculo extends JFrame implements ActionListener 
 		getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
 		setSize(700,270);
 		setResizable(false);
-		
-		 
-		
-		
-	
-	
 	}
 
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()== botonRegistrar) {

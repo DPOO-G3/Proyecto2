@@ -12,9 +12,11 @@ public class MedioDePago {
  	this.numero = numero;
  	this.tipoDeTarjeta = tipoDeTarjeta;
  	this.fechaVencimiento = fechaVencimiento;
-  }
+     }
+ 	
  	
  	public int getNumeroTarjeta() {
  		return numero;
  	}
- 	}
+ 	
+ }

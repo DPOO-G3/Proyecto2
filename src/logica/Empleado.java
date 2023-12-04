@@ -21,28 +21,37 @@ public class Empleado  extends UsuarioGenerico{
 		return nombre;
 	}
 	
+	
 	public String getSede() {
 		return sede;
 	}
 	
-	public void administarRecogidaCliente(Reserva reserva) {
+	
+	public void administarRecogidaCliente(Reserva reserva) 
+    {
 		reserva.setVehiculoRecogido(true);
 	}
+	
+	
 	public double agregarConductor(double valorAdicionalConductor,Reserva reserva,int numero,String pais,Date fechaVencimiento) {
 		LicienciaConducion licienciaConducion = new LicienciaConducion(numero,pais,fechaVencimiento);
 		ConductorAdicional conductorAdicional =new ConductorAdicional(licienciaConducion);
 		reserva.setConductorAdicional(conductorAdicional);
-		return valorAdicionalConductor;
-		
+		return valorAdicionalConductor;	
 	}
-	public void devolucionCocheCliente(Reserva reserva) {
+	
+	
+	public void devolucionCocheCliente(Reserva reserva) 
+	{
 		Vehiculo vehiculoReserva = reserva.getVehiculo();
 		reserva.setVehiculoRecogido(false);
 		vehiculoReserva.setFechaInicio(null);	
 		vehiculoReserva.setFechaFinal( null);
 		vehiculoReserva.setAlquilado(false);
 		
-		}
+    }
+	
+	
 	public Reserva crearReserva(Vehiculo vehiculo,Date fechaInicio,Date FechaFinal,double precio30 ,double precioRestante,
 			String sedeDevolver,String sedeRecoger,
 			int numerotarjeta,String nombreCliente) 
@@ -52,8 +61,9 @@ public class Empleado  extends UsuarioGenerico{
 				  fechaInicio,FechaFinal,precio30,precioRestante,
 				  precio30+precioRestante,numerotarjeta,
 				  sedeRecoger,sedeDevolver,null,false,vehiculo,nombreCliente);	  
-		  		return reserva;
-}
+		  return reserva;
+    }
+
 	
 	public void revisarEstadoVehiculo(Vehiculo vehiculoReserva,boolean funcional) {
 		if(funcional)
@@ -62,5 +72,5 @@ public class Empleado  extends UsuarioGenerico{
 		vehiculoReserva.setFuncional(false);
 		}
 	}
-	}
+}
 

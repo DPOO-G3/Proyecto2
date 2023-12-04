@@ -15,27 +15,33 @@ public class AdministradorLocal extends UsuarioGenerico {
 		this.sede = sede;
 	}
 	
- public String getSede()
- {
+   public String getSede()
+   {
 	 return sede;
- }
- public void entregaVehiculo() { 
+   }
+   
+   
+   public void entregaVehiculo() 
+   { 
 	 
- }
+   }
 
-public String getUsuario() {
+   
+   public String getUsuario() 
+   {
 	return usuario;
-}
+   }
 
-public String getContrasenia() {
+   
+   public String getContrasenia()
+   {
 	return contrasenia;
-}
+   }
 
-public String getNombre() {
+   
+   public String getNombre() 
+   {
 	return nombre;
-}
+   }
  
- 
- 
-  
 }

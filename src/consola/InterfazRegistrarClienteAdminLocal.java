@@ -66,9 +66,6 @@ public class InterfazRegistrarClienteAdminLocal extends JFrame implements Action
 
 	}
 	
-	
-	
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

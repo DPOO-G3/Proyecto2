@@ -155,7 +155,7 @@ public class PanelAdminGeneral extends JPanel implements ActionListener {
 					BuscarIdAuto = new JTextField();
 					consultarIdAuto = new JButton("Consultar");
 					consultarIdAuto.addActionListener(this);
-					consultarIDSedes = new JButton("Consultar");
+					consultarIDSedes = new JButton("Generar Calendario");
 					consultarIDSedes.addActionListener(this);
 					registrarVehiculo = new JButton("Registrar vehiculo al inventario");
 					registrarVehiculo.addActionListener(this);
@@ -174,14 +174,15 @@ public class PanelAdminGeneral extends JPanel implements ActionListener {
 					
 					eliminarVehiculo.setBackground(Color.red);
 					ladoIzquierdo.add(registrarVehiculo); ladoIzquierdo.add(eliminarVehiculo);
-					ladoIzquierdo.add(new JLabel("Revision sedes"));
-					ladoIzquierdo.add(new JLabel("Ingrese ID  sedes"));
+					ladoIzquierdo.add(new JLabel("Revision Sedes"));
+					ladoIzquierdo.add(new JLabel("Ingrese ID sedes"));
 					ladoIzquierdo.add(textfieldsedes);
 					ladoIzquierdo.add(consultarIDSedes);
 					add(ladoIzquierdo);
 					
 			
 	}
+	
 	
 	private void cargarImagen() {
 		try {
@@ -195,12 +196,12 @@ public class PanelAdminGeneral extends JPanel implements ActionListener {
 	}
 	
 	
-	
 	private void agregarLabel(String nombre) {
 		JLabel label = new JLabel(nombre);
         listaLabels.add(label);
 	}
 
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==consultarIdAuto) {
@@ -241,6 +242,7 @@ public class PanelAdminGeneral extends JPanel implements ActionListener {
 		}
 		
 	}
+	
 	
 	public void actualizarAuto(Vehiculo vehiculo) {
 		
