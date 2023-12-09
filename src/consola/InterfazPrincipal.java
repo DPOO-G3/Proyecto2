@@ -194,7 +194,7 @@ public class InterfazPrincipal extends JFrame {
 	
 	
 	
-	//Emplado - Empresa Aluiler Vehiculos
+	//Emplado - Empresa Alquiler Vehiculos
 	public ArrayList<Integer> listaCarros() 
 	{
 		return empresaAlquilerVehiculos.crearListaCarros();
@@ -235,7 +235,7 @@ public class InterfazPrincipal extends JFrame {
 	
 	
 	
-	//Panel Emepleado
+	//Panel Empleado
 	public int DevolverCarro(Integer idVehiculoSeleccionado, Empleado empleado) {
 		int hecha = empresaAlquilerVehiculos.ProgramaEmpleadoDevolucion(idVehiculoSeleccionado,empleado);
 		return hecha;

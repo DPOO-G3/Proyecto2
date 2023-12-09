@@ -14,7 +14,7 @@ public  class Cliente extends UsuarioGenerico {
  protected LicienciaConducion licienciaConducion;
  private  MedioDePago medioDePago;
  int numeroTarjeta =0;
- protected  ArrayList<Reserva>  reservas ;
+ protected  ArrayList<Reserva>  reservas = new ArrayList<Reserva>(); ;
  
  public Cliente(String nombre, String nacionalidad, String telefono, String fechaNacimiento,String usuario, String contraseña, String tipoUsuario,ArrayList<Reserva> reservas,LicienciaConducion licencia)
 	{
@@ -28,7 +28,9 @@ public  class Cliente extends UsuarioGenerico {
 		
 		
 	}
- 
+ 	public Cliente() {
+	super("", "", "Cliente");
+ 	}
  
     public String getNombre() 
     {
@@ -48,7 +50,7 @@ public  class Cliente extends UsuarioGenerico {
 			  fechaInicio,FechaFinal,precio30,precioRestante,
 			  precio30+precioRestante,numeroTarjeta,
 			  sedeRecoger,sedeDevolver,null,false,vehiculo,nombre);	
-	  reservas = new ArrayList<Reserva>();
+	  
 	  reservas.add(reserva);
 	  return reserva;
     }
@@ -70,5 +72,27 @@ public  class Cliente extends UsuarioGenerico {
     {
 	  return fechaNac;
     }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public void setNacionalidad(String nacionalidad) {
+		this.nacionalidad = nacionalidad;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	public void setFechaNac(String fechaNac) {
+		this.fechaNac = fechaNac;
+	}
+	public void setLicienciaConducion(LicienciaConducion licienciaConducion) {
+		this.licienciaConducion = licienciaConducion;
+	}
+	public void setMedioDePago(MedioDePago medioDePago) {
+		this.medioDePago = medioDePago;
+	}
+	public void setNumeroTarjeta(int numeroTarjeta) {
+		this.numeroTarjeta = numeroTarjeta;
+	}
+	
     
 }
