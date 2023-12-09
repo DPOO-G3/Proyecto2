@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -194,7 +195,7 @@ public class InterfazPrincipal extends JFrame {
 	
 	
 	
-	//Emplado - Empresa Aluiler Vehiculos
+	//Emplado - Empresa Alquiler Vehiculos
 	public ArrayList<Integer> listaCarros() 
 	{
 		return empresaAlquilerVehiculos.crearListaCarros();
@@ -202,7 +203,7 @@ public class InterfazPrincipal extends JFrame {
 	
 	
 	
-	//Busqueda de Cliente
+	//Busqueda de Cliente y creacion reserva (Empelado)
 	public int buscarClienteYCrearReservaCliente(String categoria, String sedeRecoger, String fechaInicial, String fechaFinal, String sedeDevolver, String nombreCliente)//Llenar con parametros mateo);
 	{
 		
@@ -248,11 +249,26 @@ public class InterfazPrincipal extends JFrame {
 	}
 
 	
+	public int buscarClienteYPagar(String nombre, int cantidad, int numeroTarjeta, int contraseñaTarjeta, String pasaje) throws NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+		// TODO Auto-generated method stub
+		Cliente cliente = empresaAlquilerVehiculos.buscarClienteSistema(nombre);
+		if(cliente == null) {
+			return 0;
+		}else {
+		  if(cliente.getMedioDePago().getNumeroTarjeta() != numeroTarjeta || cliente.getMedioDePago().getContraseñaTarjeta() != contraseñaTarjeta) {
+			  return 1;
+		  }else {
+			  empresaAlquilerVehiculos.realizarPago(nombre, cantidad, numeroTarjeta, contraseñaTarjeta, pasaje);
+		  }
+		  
+	     }
+		return 2;
+	}
 	
 	
 	//Panel Admin Local
-	public void registrarClienteNeuvo(String nombre, String nacionalidad, String telefono, String fechaNac, String paisExp, String usuario, String contraseña, int nLicencia, String fechaVencLicen) throws ParseException {
-		empresaAlquilerVehiculos.crearUsuario(nombre,nacionalidad,telefono,fechaNac,paisExp,usuario, contraseña, nLicencia,fechaVencLicen);
+	public void registrarClienteNeuvo(String nombre, String nacionalidad, String telefono, String fechaNac, String paisExp, String usuario, String contraseña, int nLicencia, String fechaVencLicen, int nTarjeta, int contraTarjeta) throws ParseException {
+		empresaAlquilerVehiculos.crearUsuario(nombre,nacionalidad,telefono,fechaNac,paisExp,usuario, contraseña, nLicencia,fechaVencLicen,nTarjeta, contraTarjeta);
 		
 	}
 
@@ -291,4 +307,8 @@ public class InterfazPrincipal extends JFrame {
 		Vehiculo vehiculo = empresaAlquilerVehiculos.buscarAutoPorId(ID);
 		panelAdminGeneral.actualizarAuto(vehiculo);
 	}
+
+
+
+	
 }

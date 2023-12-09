@@ -201,8 +201,9 @@ public class PanelAdminLocal  extends JPanel implements ActionListener{
 	}
 	
 	
-	public void RegistrarClienteNuevo(String nombre, String nacionalidad, String telefono, String fechaNac, String paisExp, String usuario, String contraseña, int nLicencia, String fechaVencLicen) throws ParseException {
-		interfazPrincipal.registrarClienteNeuvo(nombre,nacionalidad,telefono,fechaNac,paisExp,usuario, contraseña, nLicencia,fechaVencLicen);
+	public void RegistrarClienteNuevo(String nombre, String nacionalidad, String telefono, String fechaNac, String paisExp, String usuario, String contraseña, int nLicencia, String fechaVencLicen, int nTarjeta, int contraTarjeta) throws ParseException {
+		
+		interfazPrincipal.registrarClienteNeuvo(nombre,nacionalidad,telefono,fechaNac,paisExp,usuario, contraseña, nLicencia,fechaVencLicen,nTarjeta,contraTarjeta);
 		
 	}
 	

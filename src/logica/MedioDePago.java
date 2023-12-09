@@ -1,22 +1,25 @@
 package logica;
 
-
-import java.util.Date;
-
 public class MedioDePago {
- private int numero;
- private String tipoDeTarjeta;
- private Date fechaVencimiento;
+ private int numeroTarjeta;
+ private int contraseñaTarjeta;
+
  
- 	public MedioDePago(int numero ,String tipoDeTarjeta ,Date fechaVencimiento) {
- 	this.numero = numero;
- 	this.tipoDeTarjeta = tipoDeTarjeta;
- 	this.fechaVencimiento = fechaVencimiento;
+ 	public MedioDePago(int numeroTarjeta,int contraseñaTarjeta) {
+ 	this.numeroTarjeta = numeroTarjeta;
+ 	this.contraseñaTarjeta = contraseñaTarjeta;
+ 	
      }
  	
  	
- 	public int getNumeroTarjeta() {
- 		return numero;
+ 	public int getNumeroTarjeta() 
+ 	{
+ 		return numeroTarjeta;
+ 	}
+ 	
+ 	public int getContraseñaTarjeta() 
+ 	{
+ 		return contraseñaTarjeta;
  	}
  	
  }

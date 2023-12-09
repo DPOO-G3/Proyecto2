@@ -25,6 +25,7 @@ public class InterfazRegistrarReservaEmpleado extends JFrame implements ActionLi
 	private ArrayList<JLabel> listaLabels = new ArrayList<JLabel>();
 	private JButton botonRegistrar ;
 	private PanelEmpleado interfazEmpleado;
+	private InterfazMedioDePagoTarjeta interfazPagoTarjeta;
 	
 	public InterfazRegistrarReservaEmpleado(PanelEmpleado panelEmpleado) {
 		this.interfazEmpleado = panelEmpleado;
@@ -68,6 +69,8 @@ public class InterfazRegistrarReservaEmpleado extends JFrame implements ActionLi
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()== botonRegistrar) {
 			
+			
+	        
 			String categoria="";
 			String sedeRecoger="";
 			String FechaInicial="";
@@ -118,11 +121,24 @@ public class InterfazRegistrarReservaEmpleado extends JFrame implements ActionLi
 			if(estaHecha == 0) {
 				JOptionPane.showMessageDialog(null, "No se pudo registrar el vehiculo, Cliente no encontrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 			}else {
-			JOptionPane.showMessageDialog(this, "Vehiculo registrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+				Object[] opciones = { "Efectivo", "Tarjeta"};
+
+		        // Mostrar el cuadro de diálogo con opciones personalizadas
+		        int seleccion = JOptionPane.showOptionDialog(null, "¿Como desea realizar el pago? : ", "Opciones Personalizadas",
+		                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
+		        
+		        if (seleccion == 1) {
+		        	interfazPagoTarjeta = new InterfazMedioDePagoTarjeta(interfazEmpleado);
+		        	interfazPagoTarjeta.setVisible(true);
+		        	this.dispose();
+		        }else {
+			      JOptionPane.showMessageDialog(this, "Vehiculo registrado", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+			      this.dispose();
+		        }
 		
-			this.dispose();
 			}
 			}
+			
 		}
 }}
 

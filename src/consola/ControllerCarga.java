@@ -15,6 +15,7 @@ import logica.CategoriaVehiculo;
 import logica.Cliente;
 import logica.Empleado;
 import logica.LicienciaConducion;
+import logica.MedioDePago;
 import logica.Sede;
 import logica.Tarifario;
 import logica.UsuarioGenerico;
@@ -59,6 +60,8 @@ public class ControllerCarga {
 		}
 		return adminLocal;	
 	}
+	
+	
 	
 	
 	public AdministradorGeneral cargarAdministradorGeneral(String archivoAdministradorGeneral) 
@@ -123,13 +126,16 @@ public class ControllerCarga {
 				int numeroLicencia = Integer.parseInt(partes[7]);
 				String paisExpedicion = partes[8];
 				String fechaVencimientoLicencia = partes[9];
+				int numeroTarjeta = Integer.parseInt(partes[10]);
+				int contraseñaTarjeta = Integer.parseInt(partes[11]);
+				
 				
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		        Date fechau =format.parse(fechaVencimientoLicencia);
-				
+		        MedioDePago tarjeta = new MedioDePago(numeroTarjeta, contraseñaTarjeta);
 				LicienciaConducion licencia = new LicienciaConducion(numeroLicencia,paisExpedicion, fechau);
 				
-				Cliente perCliente = new Cliente(nombre, nacionalidad, telefono, fechaNacimiento, usuario, contraseña, tipoUsuario,null,licencia);
+				Cliente perCliente = new Cliente(nombre, nacionalidad, telefono, fechaNacimiento, usuario, contraseña, tipoUsuario,null,licencia,tarjeta);
 				clientes.add(perCliente);
 				
 			}
@@ -370,6 +376,36 @@ public class ControllerCarga {
 
         return listaUsuario;
     }
+
+
+	public ArrayList<String> cargaMediosDePago(String string) {
+		FileReader archivo;
+		BufferedReader lector;
+		ArrayList<String> PagosArrayList = new ArrayList<String>();		
+		try
+		{
+			archivo = new FileReader(string);
+			lector = new BufferedReader(archivo);
+			String cadena;
+		
+			while((cadena = lector.readLine()) != null)
+			{
+				
+				PagosArrayList.add(cadena);
+			}
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println("ERROR: el archivo indicado no se encontró.");
+		}
+		catch (IOException e)
+		{
+			System.out.println("ERROR: hubo un problema leyendo el archivo.");
+			System.out.println(e.getMessage());
+		}
+		return PagosArrayList;
+		
+	}
     
 }
 

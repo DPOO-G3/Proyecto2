@@ -66,6 +66,7 @@ public class InterfazRegistrarEmpleoAdminLocal extends JFrame implements ActionL
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()== botonRegistrar) {
 			
+			
 			String Nombre="";
 			String Sede="";
 			String Usuario="";

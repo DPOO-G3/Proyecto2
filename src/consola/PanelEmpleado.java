@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 
@@ -233,7 +234,7 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 				JTextField textField = new JTextField();
 					textField.setBorder(borde);
 				 listaJTextFields.add(textField);
-				 textField.setPreferredSize(new Dimension(250, 30));
+				 textField.setPreferredSize(new Dimension(200, 30));
 				 textField.setEditable(true);
 //				
 				 c.gridy=i+inicioDesde0;
@@ -249,7 +250,7 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 				JTextField textField = new JTextField();
 				textField.setBorder(borde);
 				listaJTextFields.add(textField);
-				textField.setPreferredSize(new Dimension(250, 30));
+				textField.setPreferredSize(new Dimension(230, 30));
 				textField.setEditable(true);
 				c.gridx=3;
 				c.gridy=inicioDesde0+i-primeraColumna;
@@ -267,6 +268,12 @@ public class PanelEmpleado extends JPanel implements ActionListener{
 	    ArrayList<Integer> listaCarros = interfazPrincipal.listaCarros();
 	    Integer[] arrayCarros = listaCarros.toArray(new Integer[0]);
 	    usuariosBox.setModel(new JComboBox<>(arrayCarros).getModel());
+	}
+
+
+	public int realizarPagotarjeta(String nombre, int cantidad, int numeroTarjeta, int contraseñaTarjeta, String pasaje) throws NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+		int estaHecha = interfazPrincipal.buscarClienteYPagar(nombre, cantidad, numeroTarjeta, contraseñaTarjeta, pasaje);
+		return estaHecha;
 	}
 
 

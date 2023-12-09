@@ -38,6 +38,8 @@ public class InterfazRegistrarClienteAdminLocal extends JFrame implements Action
 		interfazAdminLocal.agregarLabel("Contraseña", listaLabels);
 		interfazAdminLocal.agregarLabel("Numero Licencica", listaLabels);
 		interfazAdminLocal.agregarLabel("FechaVen Licencia", listaLabels);
+		interfazAdminLocal.agregarLabel("Numero de Tarjeta", listaLabels);
+		interfazAdminLocal.agregarLabel("Contraseña de la tarjeta", listaLabels);
 		
 		GridBagConstraints c  = new GridBagConstraints();
 		c.gridx=1;
@@ -80,6 +82,8 @@ public class InterfazRegistrarClienteAdminLocal extends JFrame implements Action
 			String Contraseña="";
 			int NLicencia = 0;
 			String FechaVencLicen="";
+			int NTarjeta = 0;
+			int ContraTarjeta = 0;
 
 			for (int i = 0; i < listaJTextFields.size(); i++) {
 	
@@ -128,7 +132,26 @@ public class InterfazRegistrarClienteAdminLocal extends JFrame implements Action
 					FechaVencLicen =listaJTextFields.get(i).getText();
 					
 					break;
-					
+				case 9:
+					try {
+						String NTarje = listaJTextFields.get(i).getText();
+						NTarjeta = Integer.parseInt(NTarje);
+						break;
+					} catch (Exception e2) {
+						
+						JOptionPane.showMessageDialog(this, "No se pudo registrar el cliente, numero de Tarjeta no valido", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+						break;
+					}
+				case 10:
+					try {
+						String CTarjeta = listaJTextFields.get(i).getText();
+						ContraTarjeta = Integer.parseInt(CTarjeta);
+						break;
+					} catch (Exception e2) {
+						
+						JOptionPane.showMessageDialog(this, "No se pudo registrar el cliente, contraseña no valido, tiene que ser de 4 digitos", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+						break;
+					}
 				default:
 					JOptionPane.showMessageDialog(null, "No se pudo registrar el vehiculo", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -138,7 +161,7 @@ public class InterfazRegistrarClienteAdminLocal extends JFrame implements Action
 				JOptionPane.showMessageDialog(null, "No se pudo registrar el vehiculo, Complete todos los Espacio", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 			}else{
 				try {
-					interfazAdminLocal.RegistrarClienteNuevo(Nombre,Nacionalidad,telefono,FechaNac,PaisExp,Usuario,Contraseña,NLicencia,FechaVencLicen);
+					interfazAdminLocal.RegistrarClienteNuevo(Nombre,Nacionalidad,telefono,FechaNac,PaisExp,Usuario,Contraseña,NLicencia,FechaVencLicen,NTarjeta,ContraTarjeta);
 					JOptionPane.showMessageDialog(this, "Registro del Cliente Exitoso", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 				} catch (ParseException e1) {
 					

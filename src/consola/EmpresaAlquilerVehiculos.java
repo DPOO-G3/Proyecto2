@@ -4,6 +4,8 @@ package consola;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +14,8 @@ import java.util.Set;
 
 import javax.swing.JOptionPane;
 
+import Pagos.PagosGenerales;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -19,6 +23,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 import logica.LicienciaConducion;
+import logica.MedioDePago;
 import logica.AdministradorGeneral;
 import logica.AdministradorLocal;
 import java.io.BufferedWriter;
@@ -48,6 +53,9 @@ public class EmpresaAlquilerVehiculos {
   private ArrayList<Seguro> seguros = new ArrayList<Seguro>();
   public static Integer numeroReservaInteger = 0 ;
   public static Map<Date, Integer> calendario;
+  private ArrayList<String> listaMediosDePago;
+  private PagosGenerales PagoTarjeta;
+  
   
   
  
@@ -104,6 +112,7 @@ public class EmpresaAlquilerVehiculos {
          e.printStackTrace();
      }
     } 
+   
    
    
    
@@ -269,11 +278,27 @@ public class EmpresaAlquilerVehiculos {
    }
    
    
-   
-   
+   public void realizarPago(String nombre, int cantidad, int numeroTarjeta, int contraseñaTarjeta, String pasaje) throws NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+		for(String medio : listaMediosDePago) {
+			if(medio.equals(pasaje)) {
+				try {
+			        Class<?> gatewayClass = Class.forName(pasaje);
+			        
+			        Constructor<?> constructor = gatewayClass.getDeclaredConstructor();
+			        PagosGenerales gateway = (PagosGenerales) constructor.newInstance();
+			        
+					String texto = gateway.generartexto(nombre,cantidad, numeroTarjeta, contraseñaTarjeta, pasaje);
+					gateway.GuardarPagoRegistro(texto);
+			    } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+			        e.printStackTrace();
+			    }
+		     }
+		
+	}
+   }
   
    //Admini Local
-   public void crearUsuario(String nombre2, String nacionalidad2, String telefono2, String fechaNac2, String paisExp, String usuario2, String contraseña2, int nLicencia, String fechaVencLicen) throws ParseException {
+   public void crearUsuario(String nombre2, String nacionalidad2, String telefono2, String fechaNac2, String paisExp, String usuario2, String contraseña2, int nLicencia, String fechaVencLicen, int nTarjeta, int contraTarjeta) throws ParseException {
 	 
 	   
 	   String nombre = nombre2;
@@ -286,12 +311,15 @@ public class EmpresaAlquilerVehiculos {
 	   int numeroLicencia = nLicencia;
 	   String paisExpe = paisExp;
 	   String Fecvenci = fechaVencLicen;
+	   int numeroTarjeta = nTarjeta;
+	   int contraseñaTarjeta = contraTarjeta;
 	   
 	   SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	   Date fechau =format.parse(Fecvenci);
 	   
+	   MedioDePago tarjeta = new MedioDePago(numeroTarjeta,contraseñaTarjeta);
 	   LicienciaConducion Lice = new LicienciaConducion(numeroLicencia, paisExpe, fechau );
-	   Cliente cliente = new Cliente(nombre, nacionalidad, telefono, fechaNac,usuario, contraseña, "Cliente", null, Lice);
+	   Cliente cliente = new Cliente(nombre, nacionalidad, telefono, fechaNac,usuario, contraseña, "Cliente", null, Lice, tarjeta);
 	   listaClientes.add(cliente);
    }
  
@@ -663,6 +691,8 @@ public class EmpresaAlquilerVehiculos {
 	 administradorGeneral = control.cargarAdministradorGeneral("./data/administradorGeneral.txt\\");
 	 listaSedes = control.cargarSedes(listaEmpleados, listaVehiculo, listaAdministradorLocal, "./data/sedes.txt\\");
 	 listaUsuarioGenericos = control.cargaUsuarios(listaEmpleados, listaClientes, listaAdministradorLocal, administradorGeneral);
+	 listaMediosDePago =  control.cargaMediosDePago("./data/Pasarelas.txt\\");
+	 
     }
    
    
@@ -728,4 +758,6 @@ public class EmpresaAlquilerVehiculos {
        //  System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());}
  
    }
+
+
 }
