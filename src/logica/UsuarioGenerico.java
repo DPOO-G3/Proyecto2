@@ -25,5 +25,14 @@ public class UsuarioGenerico {
 	public String getTipoUsuario() {
 		return tipoUsuario;
 	}
+
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+	
+	public void SetUsuario(String usuario) {
+		this.usuario = usuario;
+	}
  
 }

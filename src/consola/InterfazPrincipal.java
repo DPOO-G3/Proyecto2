@@ -236,7 +236,7 @@ public class InterfazPrincipal extends JFrame {
 	
 	
 	
-	//Panel Emepleado
+	//Panel Empleado
 	public int DevolverCarro(Integer idVehiculoSeleccionado, Empleado empleado) {
 		int hecha = empresaAlquilerVehiculos.ProgramaEmpleadoDevolucion(idVehiculoSeleccionado,empleado);
 		return hecha;

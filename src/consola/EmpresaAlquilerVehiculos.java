@@ -1,18 +1,27 @@
 package consola;
 
 
+import java.awt.geom.AffineTransform;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.TimeZone;
+import java.util.Map.Entry;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+import ProgramaClientes.InterfazClientesIndependiente;
 
 import Pagos.PagosGenerales;
 
@@ -58,7 +67,17 @@ public class EmpresaAlquilerVehiculos {
   
   
   
- 
+  
+  public EmpresaAlquilerVehiculos() throws ParseException {
+	  Map<Date, Integer> mapaFechas = generarFechasDeDosAnios(2023, 2024);
+		 EmpresaAlquilerVehiculos.calendario = mapaFechas;
+		 ControllerCarga control = new ControllerCarga();
+		 this.cargaDatos(control);
+		 Persistencia persistencia = new Persistencia();
+		 this.cargaPersistencia(persistencia, this);	
+		 this.cargarReservasEnCalendario(this);
+  }
+  
    //Guardar Informacion reserva para persistencia
    private void guardarycerra() 
   {
@@ -194,7 +213,7 @@ public class EmpresaAlquilerVehiculos {
 	for (Map.Entry<Date, Integer> entry : calendario.entrySet()) {
         System.out.println("Fecha: " + entry.getKey() + ", Número8844: " + entry.getValue());
     }
-    return calendario;
+    return calendario;	
     }
    
    
@@ -300,6 +319,7 @@ public class EmpresaAlquilerVehiculos {
    //Admini Local
    public void crearUsuario(String nombre2, String nacionalidad2, String telefono2, String fechaNac2, String paisExp, String usuario2, String contraseña2, int nLicencia, String fechaVencLicen, int nTarjeta, int contraTarjeta) throws ParseException {
 	 
+<<<<<<< HEAD
 	   
 	   String nombre = nombre2;
 	   String nacionalidad = nacionalidad2;
@@ -314,14 +334,26 @@ public class EmpresaAlquilerVehiculos {
 	   int numeroTarjeta = nTarjeta;
 	   int contraseñaTarjeta = contraTarjeta;
 	   
+=======
+>>>>>>> branch 'master' of https://github.com/DPOO-G3/Proyecto2.git
 	   SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-	   Date fechau =format.parse(Fecvenci);
+	   Date fechau =format.parse(fechaVencLicen);
 	   
+<<<<<<< HEAD
 	   MedioDePago tarjeta = new MedioDePago(numeroTarjeta,contraseñaTarjeta);
 	   LicienciaConducion Lice = new LicienciaConducion(numeroLicencia, paisExpe, fechau );
 	   Cliente cliente = new Cliente(nombre, nacionalidad, telefono, fechaNac,usuario, contraseña, "Cliente", null, Lice, tarjeta);
+=======
+	   LicienciaConducion Lice = new LicienciaConducion(nLicencia, paisExp, fechau );
+	   Cliente cliente = new Cliente(nombre2, nacionalidad2, telefono2, fechaNac2,usuario2, contraseña2, "Cliente", null, Lice);
+>>>>>>> branch 'master' of https://github.com/DPOO-G3/Proyecto2.git
 	   listaClientes.add(cliente);
+	   UsuarioGenerico NuevoUsuario = new UsuarioGenerico(usuario2, contraseña2, "cliente");
    }
+   
+   
+   
+   
  
    
    public int agregarEmpleado(String nombre2, String sede2, String usuario2, String contraseña2) {
@@ -346,6 +378,106 @@ public class EmpresaAlquilerVehiculos {
 	   return 1;
 	   
     }
+   
+   public void crearCliente(ArrayList<JTextField> listaJTextFields) {
+	   Cliente cliente = new Cliente();
+	   int numeroLicencia=0;
+	   String paisExpedicicionLicencia="";
+	   Date fechaVencimiento = null;
+	   int numeroTarjeta=0;
+	   String tipoTarjeta="";
+	   Date fechaTarjetaDate = null;
+	   String usuario="";
+	   String Contrasenia= "";
+		for (int i =0; i<listaJTextFields.size();i++) {
+			JTextField field;
+			switch (i) {
+			
+			case 0: 
+				field=listaJTextFields.get(i);
+				cliente.setNombre(field.getText());
+				break;
+			
+			case 1:
+				field=listaJTextFields.get(i);
+				cliente.setNacionalidad(field.getText());
+				break;
+			
+			case 2:
+				field=listaJTextFields.get(i);
+				cliente.setTelefono(field.getText());
+				break;
+			
+			case 3:
+				field=listaJTextFields.get(i);
+				cliente.setFechaNac(field.getText());
+				break;
+			
+			case 4 :
+				field=listaJTextFields.get(i);
+				numeroLicencia = Integer.parseInt(field.getText());
+				break;
+			case 5 :
+				field=listaJTextFields.get(i);
+				paisExpedicicionLicencia = field.getText();
+				break;
+			case 6 :
+				 field=listaJTextFields.get(i);
+				 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				 try {
+					fechaVencimiento = dateFormat.parse(field.getText());
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				break;
+			case 7 : 
+				field=listaJTextFields.get(i);
+				numeroTarjeta = Integer.parseInt(field.getText());
+				
+				break;
+				
+			case 8:
+				field=listaJTextFields.get(i);
+				tipoTarjeta = field.getText();
+				break;
+			case 9:
+				field=listaJTextFields.get(i);
+				SimpleDateFormat dateForma = new SimpleDateFormat("yyyy-MM-dd");
+				 try {
+					fechaTarjetaDate = dateForma.parse(field.getText());
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				 
+				 break;
+			case 10:
+				field=listaJTextFields.get(i);
+				cliente.SetUsuario(field.getText());
+				usuario = field.getText();
+				break;
+			case 11:
+				field=listaJTextFields.get(i);
+				cliente.setContraseña(field.getText());
+				Contrasenia = field.getText();
+				
+				break;
+
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + i);
+			}
+		}
+		LicienciaConducion licienciaConducion = new LicienciaConducion(numeroLicencia, paisExpedicicionLicencia, fechaVencimiento);
+		MedioDePago medioDePago = new MedioDePago(numeroTarjeta, tipoTarjeta, fechaTarjetaDate);
+		cliente.setLicienciaConducion(licienciaConducion);
+		cliente.setMedioDePago(medioDePago);
+		listaClientes.add(cliente);
+		UsuarioGenerico usuarioGenerico = new UsuarioGenerico(usuario, Contrasenia, "Cliente");
+		listaUsuarioGenericos.add(usuarioGenerico);
+		
+   }
    
    
    public ArrayList<String> crearListaUsuario() {
@@ -667,6 +799,48 @@ public class EmpresaAlquilerVehiculos {
 			}
 	  }
     }
+   
+   public DefaultListModel<String> disponibilidadFechas(String FechaInicial ,String fechaFinal) throws ParseException {
+	   SimpleDateFormat formato = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+	   formato.setTimeZone(TimeZone.getTimeZone("COT"));
+	   Date fecha1 = formato.parse(FechaInicial);
+	
+	   Date fecha2 = formato.parse(fechaFinal);
+	   
+	   DefaultListModel<String> listaDeFechas = new DefaultListModel<>();
+	   
+	   
+	   for(Map.Entry<Date,Integer> entry : EmpresaAlquilerVehiculos.calendario.entrySet() ) {
+		  
+		   
+		    if(verificarFechaEnRango(entry.getKey(),fecha1,fecha2 )) {
+		    	
+			   String fecha = formato.format(entry.getKey());
+			   fecha = fecha + " Numero de Coches disponibles: "+String.valueOf(entry.getValue());
+			   listaDeFechas.addElement(fecha);   
+		   }
+		   
+		   
+	   }
+	   return listaDeFechas;
+   }
+   
+   private static boolean verificarFechaEnRango(Date fechaAVerificar, Date fechaInicio, Date fechaFin) {
+       
+       Calendar calFechaAVerificar = Calendar.getInstance();
+       calFechaAVerificar.setTime(fechaAVerificar);
+
+       Calendar calFechaInicio = Calendar.getInstance();
+       calFechaInicio.setTime(fechaInicio);
+
+       Calendar calFechaFin = Calendar.getInstance();
+       calFechaFin.setTime(fechaFin);
+
+       // Verifica si la fecha está en el rango
+       return (calFechaAVerificar.after(calFechaInicio) || calFechaAVerificar.equals(calFechaInicio))
+               && (calFechaAVerificar.before(calFechaFin) || calFechaAVerificar.equals(calFechaFin));
+   }
+   
 
    
    //Carga de la persistencia
@@ -742,15 +916,8 @@ public class EmpresaAlquilerVehiculos {
 	
 	 InterfazPrincipal ventana = new InterfazPrincipal(programa);
 	 ventana.setLocationRelativeTo( null );
-     ventana.setVisible( true );
+     ventana.setVisible( true ); 
      
-     Map<Date, Integer> mapaFechas = generarFechasDeDosAnios(2023, 2024);
-	 EmpresaAlquilerVehiculos.calendario = mapaFechas;
-	 ControllerCarga control = new ControllerCarga();
-	 programa.cargaDatos(control);
-	 Persistencia persistencia = new Persistencia();
-	 programa.cargaPersistencia(persistencia, programa);	
-	 programa.cargarReservasEnCalendario(programa);
 	
      //System.out.println("Fechas para 2023 y 2024:");
      
