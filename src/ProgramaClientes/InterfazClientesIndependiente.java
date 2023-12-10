@@ -24,6 +24,9 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import consola.EmpresaAlquilerVehiculos;
+import consola.InterfazPrincipal;
+import consola.InterfazRegistrarReservaCliente;
+import consola.InterfazRegistrarVehiculo;
 import logica.Cliente;
 
 public class InterfazClientesIndependiente extends JFrame implements ActionListener {
@@ -42,6 +45,9 @@ public class InterfazClientesIndependiente extends JFrame implements ActionListe
 	private JTextField fechaInicialField;
 	private JTextField fechaFinalField;
 	private Frame frameDisponibilidad;
+	private String usuarioA = "2";
+	private String contraseniaA = "2";
+	private InterfazRegistrarVehiculo interfazRegistrarVehiculo;
 	
 	public InterfazClientesIndependiente(EmpresaAlquilerVehiculos empresaAlquilerVehiculos)
 	{
@@ -141,6 +147,10 @@ public class InterfazClientesIndependiente extends JFrame implements ActionListe
 		frameRegistrarUsuario.setVisible(true);
 	
 		frameRegistrarUsuario.pack();
+		frameRegistrarUsuario.setSize(800, 400);
+		
+		frameRegistrarUsuario.setResizable(false);
+		//frameRegistrarUsuario.set
 		
 		
 	
@@ -235,6 +245,13 @@ public class InterfazClientesIndependiente extends JFrame implements ActionListe
 		}
 		else if (e.getSource()==botonBuscarDisponibilidad) {
 			mostrarListaDisponibilidad();
+		}
+		
+		else if (e.getSource()==botonReservarVehiculo)
+		{
+			InterfazPrincipal interfazPrincipal = new InterfazPrincipal(empresaAlquilerVehiculos);
+			InterfazRegistrarReservaCliente interfazRegistrarReservaCliente = new InterfazRegistrarReservaCliente(0,usuarioA,contraseniaA,interfazPrincipal);
+			interfazRegistrarReservaCliente.setVisible(true);
 		}
 		
 	}

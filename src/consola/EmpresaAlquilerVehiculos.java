@@ -68,6 +68,7 @@ public class EmpresaAlquilerVehiculos {
   private ArrayList<String> listaMediosDePago;
   private PagosGenerales PagoTarjeta;
   private FacturaPdf factura = new FacturaPdf();
+  public static Integer numeroFactura = 0 ;
   
   
   
@@ -255,16 +256,15 @@ public class EmpresaAlquilerVehiculos {
    {
 
  	 for (Reserva reserva : reservas) {
- 			if((idVehiculoSeleccionado.equals(reserva.getVehiculo().getIdVehiculo()) && (reserva.getVehiculo().getAlquilado() == true)) )
+ 			if((idVehiculoSeleccionado.equals(reserva.getVehiculo().getIdVehiculo()) && (reserva.getVehiculo().getAlquilado() == false)) )
  				reservaClienteInterno = reserva; 		
  	
      }
- 	 
  	 if(reservaClienteInterno == null) {
+ 	
  		 return 0;
  	 }
  		 double valorAdicional = 0;
- 		
  		 String adicional = "1";
  		 if(adicional.equals("1")) {
  			int numero = 123456;
@@ -278,9 +278,9 @@ public class EmpresaAlquilerVehiculos {
  				double tarifaTotal = reservaClienteInterno.getPrecioRestante() + valorAdicional;
  				 empleadoLogin.administarRecogidaCliente(reservaClienteInterno);
  				//Llamar función Factura
+ 				FacturaPdf.generateInvoice("./facturas/invoice_"+numeroFactura+".pdf", reservaClienteInterno.getNombrePersona(), reservaClienteInterno.getVehiculo().getModelo(), tarifaTotal);
  				
- 				 factura.generateInvoice("./facturas/invoice_"+numeroReservaInteger+".pdf", reservaClienteInterno.getNombrePersona(), reservaClienteInterno.getVehiculo().getModelo(), tarifaTotal);
- 			} catch (ParseException e) {
+ 				} catch (ParseException e) {
  				// TODO Auto-generated catch block
  				e.printStackTrace();
  			}	
