@@ -1,6 +1,6 @@
 nombre;sede;usuario;contraseña;tipoUsuario
 Armando;Bogota;2;2;Administrador Local
-Bella;Valledupar;adminL2;DPOO2;Administrador Local
+Bella;Valledupar;12;12;Administrador Local
 Camilo;Cali;adminL3;DPOO3;Administrador Local
 Daniel;Medellin;adminL4;DPOO4;Administrador Local
 Esteban;Barranquilla;adminL5;DPOO5;Administrador Local

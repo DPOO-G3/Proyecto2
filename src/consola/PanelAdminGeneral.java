@@ -174,9 +174,6 @@ public class PanelAdminGeneral extends JPanel implements ActionListener {
 					
 					eliminarVehiculo.setBackground(Color.red);
 					ladoIzquierdo.add(registrarVehiculo); ladoIzquierdo.add(eliminarVehiculo);
-					ladoIzquierdo.add(new JLabel("Revision Sedes"));
-					ladoIzquierdo.add(new JLabel("Ingrese ID sedes"));
-					ladoIzquierdo.add(textfieldsedes);
 					ladoIzquierdo.add(consultarIDSedes);
 					add(ladoIzquierdo);
 					

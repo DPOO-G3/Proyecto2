@@ -15,7 +15,7 @@ public  class Cliente extends UsuarioGenerico {
 
  protected  MedioDePago tarjeta;
 
- protected  ArrayList<Reserva>  reservas ;
+ protected  ArrayList<Reserva>  reservas = new ArrayList<Reserva>(); ;
 
 
 
@@ -27,7 +27,7 @@ public  class Cliente extends UsuarioGenerico {
 		this.nacionalidad = nacionalidad;
 		this.telefono = telefono;
 		this.fechaNac = fechaNacimiento;
-		this.reservas = reservas;
+		this.reservas = new ArrayList<Reserva>();;
 		this.licienciaConducion = licencia;
 		this.tarjeta = tarjeta;
 	}
@@ -53,7 +53,7 @@ public  class Cliente extends UsuarioGenerico {
 			  fechaInicio,FechaFinal,precio30,precioRestante,
 			  precio30+precioRestante,tarjeta.getNumeroTarjeta(),
 			  sedeRecoger,sedeDevolver,null,false,vehiculo,nombre);	
-	  
+	  System.out.println(reserva);
 	  reservas.add(reserva);
 	  return reserva;
     }
