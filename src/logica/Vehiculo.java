@@ -19,12 +19,14 @@ public class Vehiculo {
 	private  boolean conSeguro;
 	private boolean funcional = true;
 	private String rutaArchivoImagen;
+	private String tipoVehiculo;
+	private int porAdicional;
 	
 
 	public Vehiculo(int idVehiculo, boolean alquilado,Sede sedeActual,String sedeInicial,int capacidad, String placa, 
 			String modelo, String color, 
 			String tipoTransmision,CategoriaVehiculo categoria,
-			Date fechaInicio,Date fechaFinal,boolean conseguro,boolean funcional ,String rutaArchivoImagen)
+			Date fechaInicio,Date fechaFinal,boolean conseguro,boolean funcional ,String rutaArchivoImagen, String tipoVeh, int porAdi)
 	{
 		this.idVehiculo = idVehiculo;
 		this.alquilado = alquilado;
@@ -41,8 +43,11 @@ public class Vehiculo {
 		this.conSeguro = conseguro;
 		this.funcional = funcional;
 		this.rutaArchivoImagen = rutaArchivoImagen;
+		this.tipoVehiculo = tipoVeh;
+		this.porAdicional = porAdi;
 		
 	}
+
 	
 	
 	//Getters and Setters

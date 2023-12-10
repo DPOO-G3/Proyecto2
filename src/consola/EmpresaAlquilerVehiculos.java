@@ -189,7 +189,7 @@ public class EmpresaAlquilerVehiculos {
  		}
  		Vehiculo vehiculo = new Vehiculo(idVehiculo, false, sede,nombreSedeString, capacidad, placa,
  				                         modelo, color, tipoTransmision, categoria, null,
- 				                         null, false, false,rutaarchivo);
+ 				                         null, false, false,rutaarchivo,null,0);
  		
  		administradorGeneral.registrarCompraVehiculo(vehiculo, sede,listaVehiculo);
  		
