@@ -19,6 +19,7 @@ import java.util.Map.Entry;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import java.util.Random;
 import javax.swing.JTextField;
 
 import ProgramaClientes.InterfazClientesIndependiente;
@@ -319,7 +320,7 @@ public class EmpresaAlquilerVehiculos {
    //Admini Local
    public void crearUsuario(String nombre2, String nacionalidad2, String telefono2, String fechaNac2, String paisExp, String usuario2, String contraseña2, int nLicencia, String fechaVencLicen, int nTarjeta, int contraTarjeta) throws ParseException {
 	 
-<<<<<<< HEAD
+
 	   
 	   String nombre = nombre2;
 	   String nacionalidad = nacionalidad2;
@@ -334,21 +335,18 @@ public class EmpresaAlquilerVehiculos {
 	   int numeroTarjeta = nTarjeta;
 	   int contraseñaTarjeta = contraTarjeta;
 	   
-=======
->>>>>>> branch 'master' of https://github.com/DPOO-G3/Proyecto2.git
+
+
 	   SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	   Date fechau =format.parse(fechaVencLicen);
 	   
-<<<<<<< HEAD
+
 	   MedioDePago tarjeta = new MedioDePago(numeroTarjeta,contraseñaTarjeta);
 	   LicienciaConducion Lice = new LicienciaConducion(numeroLicencia, paisExpe, fechau );
 	   Cliente cliente = new Cliente(nombre, nacionalidad, telefono, fechaNac,usuario, contraseña, "Cliente", null, Lice, tarjeta);
-=======
-	   LicienciaConducion Lice = new LicienciaConducion(nLicencia, paisExp, fechau );
-	   Cliente cliente = new Cliente(nombre2, nacionalidad2, telefono2, fechaNac2,usuario2, contraseña2, "Cliente", null, Lice);
->>>>>>> branch 'master' of https://github.com/DPOO-G3/Proyecto2.git
+
 	   listaClientes.add(cliente);
-	   UsuarioGenerico NuevoUsuario = new UsuarioGenerico(usuario2, contraseña2, "cliente");
+	   //UsuarioGenerico NuevoUsuario = new UsuarioGenerico(usuario2, contraseña2, "cliente");
    }
    
    
@@ -385,8 +383,7 @@ public class EmpresaAlquilerVehiculos {
 	   String paisExpedicicionLicencia="";
 	   Date fechaVencimiento = null;
 	   int numeroTarjeta=0;
-	   String tipoTarjeta="";
-	   Date fechaTarjetaDate = null;
+       int contraseñaTarjeta = 0;
 	   String usuario="";
 	   String Contrasenia= "";
 		for (int i =0; i<listaJTextFields.size();i++) {
@@ -434,26 +431,16 @@ public class EmpresaAlquilerVehiculos {
 				break;
 			case 7 : 
 				field=listaJTextFields.get(i);
-				numeroTarjeta = Integer.parseInt(field.getText());
+				numeroTarjeta = generateRandomNumber(8);
 				
 				break;
 				
 			case 8:
 				field=listaJTextFields.get(i);
-				tipoTarjeta = field.getText();
+				contraseñaTarjeta = generateRandomNumber(4);
 				break;
+			
 			case 9:
-				field=listaJTextFields.get(i);
-				SimpleDateFormat dateForma = new SimpleDateFormat("yyyy-MM-dd");
-				 try {
-					fechaTarjetaDate = dateForma.parse(field.getText());
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				 
-				 break;
-			case 10:
 				field=listaJTextFields.get(i);
 				cliente.SetUsuario(field.getText());
 				usuario = field.getText();
@@ -470,14 +457,26 @@ public class EmpresaAlquilerVehiculos {
 			}
 		}
 		LicienciaConducion licienciaConducion = new LicienciaConducion(numeroLicencia, paisExpedicicionLicencia, fechaVencimiento);
-		MedioDePago medioDePago = new MedioDePago(numeroTarjeta, tipoTarjeta, fechaTarjetaDate);
 		cliente.setLicienciaConducion(licienciaConducion);
-		cliente.setMedioDePago(medioDePago);
+		MedioDePago tarjeta = new MedioDePago(numeroTarjeta, contraseñaTarjeta);
+        cliente.setMedioDePago(tarjeta);
 		listaClientes.add(cliente);
 		UsuarioGenerico usuarioGenerico = new UsuarioGenerico(usuario, Contrasenia, "Cliente");
 		listaUsuarioGenericos.add(usuarioGenerico);
 		
    }
+   
+   
+   private int generateRandomNumber(int length) {
+	    Random random = new Random();
+	    StringBuilder builder = new StringBuilder();
+
+	    for (int i = 0; i < length; i++) {
+	        builder.append(random.nextInt(10));
+	    }
+
+	    return Integer.parseInt(builder.toString());
+	}
    
    
    public ArrayList<String> crearListaUsuario() {

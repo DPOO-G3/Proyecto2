@@ -12,15 +12,13 @@ public  class Cliente extends UsuarioGenerico {
  public String telefono;
  public String fechaNac;
  protected LicienciaConducion licienciaConducion;
-<<<<<<< HEAD
+
  protected  MedioDePago tarjeta;
 
  protected  ArrayList<Reserva>  reservas ;
-=======
- private  MedioDePago medioDePago;
- int numeroTarjeta =0;
- protected  ArrayList<Reserva>  reservas = new ArrayList<Reserva>(); ;
->>>>>>> branch 'master' of https://github.com/DPOO-G3/Proyecto2.git
+
+
+
  
  public Cliente(String nombre, String nacionalidad, String telefono, String fechaNacimiento,String usuario, String contraseña, String tipoUsuario,ArrayList<Reserva> reservas,LicienciaConducion licencia, MedioDePago tarjeta)
 	{
@@ -84,15 +82,13 @@ public  class Cliente extends UsuarioGenerico {
 	public void setFechaNac(String fechaNac) {
 		this.fechaNac = fechaNac;
 	}
+	public void setMedioDePago(MedioDePago tarjeta) {
+		this.tarjeta = tarjeta;
+	}
 	public void setLicienciaConducion(LicienciaConducion licienciaConducion) {
 		this.licienciaConducion = licienciaConducion;
 	}
-	public void setMedioDePago(MedioDePago medioDePago) {
-		this.medioDePago = medioDePago;
-	}
-	public void setNumeroTarjeta(int numeroTarjeta) {
-		this.numeroTarjeta = numeroTarjeta;
-	}
+	
 	
     
 }
