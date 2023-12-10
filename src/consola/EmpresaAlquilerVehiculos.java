@@ -22,6 +22,8 @@ import javax.swing.JOptionPane;
 import java.util.Random;
 import javax.swing.JTextField;
 
+import com.itextpdf.text.DocumentException;
+
 import ProgramaClientes.InterfazClientesIndependiente;
 
 import Pagos.PagosGenerales;
@@ -65,6 +67,7 @@ public class EmpresaAlquilerVehiculos {
   public static Map<Date, Integer> calendario;
   private ArrayList<String> listaMediosDePago;
   private PagosGenerales PagoTarjeta;
+  private FacturaPdf factura = new FacturaPdf();
   
   
   
@@ -240,7 +243,7 @@ public class EmpresaAlquilerVehiculos {
    }
   
     
-   public int ProgramaEmpleadoRecogerCliente(Empleado empleado, Integer idVehiculoSeleccionado) 
+   public int ProgramaEmpleadoRecogerCliente(Empleado empleado, Integer idVehiculoSeleccionado) throws IOException, DocumentException 
     {
  	   Reserva reservaClienteInterno = null;
  	   int esta67 = recogerVehiculoCliente(reservaClienteInterno, empleado, idVehiculoSeleccionado);
@@ -248,7 +251,7 @@ public class EmpresaAlquilerVehiculos {
     }
    
    
-   private int recogerVehiculoCliente(Reserva reservaClienteInterno,Empleado empleadoLogin, Integer idVehiculoSeleccionado) 
+   private int recogerVehiculoCliente(Reserva reservaClienteInterno,Empleado empleadoLogin, Integer idVehiculoSeleccionado) throws IOException, DocumentException 
    {
 
  	 for (Reserva reserva : reservas) {
@@ -274,7 +277,9 @@ public class EmpresaAlquilerVehiculos {
  				valorAdicional= empleadoLogin.agregarConductor(valorAdicional, reservaClienteInterno, numero, pais, fechaVencimiento);
  				double tarifaTotal = reservaClienteInterno.getPrecioRestante() + valorAdicional;
  				 empleadoLogin.administarRecogidaCliente(reservaClienteInterno);
+ 				//Llamar función Factura
  				
+ 				 factura.generateInvoice("./facturas/invoice_"+numeroReservaInteger+".pdf", reservaClienteInterno.getNombrePersona(), reservaClienteInterno.getVehiculo().getModelo(), tarifaTotal);
  			} catch (ParseException e) {
  				// TODO Auto-generated catch block
  				e.printStackTrace();

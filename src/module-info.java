@@ -4,6 +4,6 @@ module Project1 {
 	exports consola;
 	exports Pagos;
 
+	requires itextpdf;
 	requires java.desktop;
-	requires org.apache.pdfbox;
 }

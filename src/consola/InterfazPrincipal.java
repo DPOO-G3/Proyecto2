@@ -24,6 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import com.itextpdf.text.DocumentException;
+
 import logica.AdministradorLocal;
 import logica.Cliente;
 import logica.Empleado;
@@ -243,7 +245,7 @@ public class InterfazPrincipal extends JFrame {
 	}
 
 	
-	public int RecibirCarroCliente(Empleado empleado, Integer idVehiculoSeleccionado) {
+	public int RecibirCarroCliente(Empleado empleado, Integer idVehiculoSeleccionado) throws IOException, DocumentException {
 		int hecho = empresaAlquilerVehiculos.ProgramaEmpleadoRecogerCliente(empleado, idVehiculoSeleccionado);
 		return hecho;
 	}

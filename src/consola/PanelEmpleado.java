@@ -28,6 +28,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
+import com.itextpdf.text.DocumentException;
+
 import logica.AdministradorLocal;
 import logica.Empleado;
 
@@ -210,7 +212,15 @@ public class PanelEmpleado extends JPanel implements ActionListener{
     	}else if(e.getSource()== botonRecibirVehiculo){
     		
     		Integer idVehiculoSeleccionado = (Integer) usuariosBox.getSelectedItem();
-    		int hecho3 = interfazPrincipal.RecibirCarroCliente(empleado, idVehiculoSeleccionado);
+    		try {
+				int hecho3 = interfazPrincipal.RecibirCarroCliente(empleado, idVehiculoSeleccionado);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (DocumentException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
     		SwingUtilities.invokeLater(() -> {
                 JOptionPane.showMessageDialog(null, "Entrega Hecha", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             });
