@@ -5,4 +5,5 @@ module Project1 {
 	exports Pagos;
 
 	requires java.desktop;
+	requires org.apache.pdfbox;
 }
