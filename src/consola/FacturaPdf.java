@@ -17,7 +17,7 @@ public class FacturaPdf {
 	public static void generateInvoice(String filePath, String customerName, String vehicleDetails, double paymentAmount) throws IOException, DocumentException {
         Document document = new Document();
 
-        try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(filePath,false)) {
             PdfWriter.getInstance(document, fileOutputStream);
 
             document.open();
@@ -54,21 +54,14 @@ public class FacturaPdf {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            // contentStream.drawImage(image, 50, 600, 100, 50);
-
-            // You'll need to handle the image part differently in iText 5
             // For simplicity, we are skipping the image part in this example.
-
+            // Step 5: Add logo to the right upper corner
+            Image logoImage = Image.getInstance("./data/Imagenes/logo.png");
+            logoImage.setAbsolutePosition(document.right() - 50, document.top() - 50);
+            logoImage.scaleAbsolute(50, 50);
+            document.add(logoImage);
             // Close the document
             document.close();
-        }
-    }
-
-    public static void main(String[] args) {
-        try {
-            generateInvoice("./facturas/invoice_example_itext5.pdf", "Nombre del Cliente", "Detalles del Vehículo", 5000);
-        } catch (IOException | DocumentException e) {
-            e.printStackTrace();
         }
     }	
 }

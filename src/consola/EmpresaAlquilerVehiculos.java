@@ -278,8 +278,8 @@ public class EmpresaAlquilerVehiculos {
  				double tarifaTotal = reservaClienteInterno.getPrecioRestante() + valorAdicional;
  				 empleadoLogin.administarRecogidaCliente(reservaClienteInterno);
  				//Llamar función Factura
- 				FacturaPdf.generateInvoice("./facturas/invoice_"+numeroFactura+".pdf", reservaClienteInterno.getNombrePersona(), reservaClienteInterno.getVehiculo().getModelo(), tarifaTotal);
- 				
+ 				FacturaPdf.generateInvoice("./facturas/invoice_"+numeroFactura+".pdf", reservaClienteInterno.getNombrePersona(), reservaClienteInterno.getVehiculo().getModelo()+" con placa "+reservaClienteInterno.getVehiculo().getPlaca(), tarifaTotal);
+ 				numeroFactura += 1;
  				} catch (ParseException e) {
  				// TODO Auto-generated catch block
  				e.printStackTrace();
