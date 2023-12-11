@@ -20,7 +20,7 @@ public class ClienteTest {
     public void setUp() {
         ArrayList<Reserva> reservas = new ArrayList<>();
         LicienciaConducion licencia = new LicienciaConducion(0, null, null);
-        cliente = new Cliente("NombreCliente", "NacionalidadTest", "123456789", "01/01/2000", "usuario", "contraseña", "Cliente", reservas, licencia);
+        cliente = new Cliente("NombreCliente", "NacionalidadTest", "123456789", "01/01/2000", "usuario", "contraseña", "Cliente", reservas, licencia, null);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class ClienteTest {
 
     @Test
     public void testCrearReserva() {
-        Vehiculo vehiculo = new Vehiculo(0, false, null, null, 0, null, null, null, null, null, null, null, false, false, null);
+        Vehiculo vehiculo = new Vehiculo(0, false, null, null, 0, null, null, null, null, null, null, null, false, false, null, null, 0);
         Date fechaInicio = new Date();
         Date fechaFinal = new Date();
         Reserva reserva = cliente.crearReserva(vehiculo, fechaInicio, fechaFinal, 50.0, 100.0, "SedeDevolver", "SedeRecoger");

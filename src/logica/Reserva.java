@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.Date;
+import java.util.function.BooleanSupplier;
 
 
 
@@ -125,6 +126,14 @@ public class Reserva {
 	
 	public String getNombrePersona() {
 		return nombrePersona;
+	}
+
+	public void setVehiculo(Vehiculo vehiculo2) {
+		vehiculo = vehiculo2;
+	}
+
+	public Boolean isVehiculoRecogido() {
+		return vehiculoRecogido;
 	}
 		
 }

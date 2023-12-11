@@ -88,6 +88,10 @@ public  class Cliente extends UsuarioGenerico {
 	public void setLicienciaConducion(LicienciaConducion licienciaConducion) {
 		this.licienciaConducion = licienciaConducion;
 	}
+	public int getNumeroTarjeta() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
     

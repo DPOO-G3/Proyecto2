@@ -51,7 +51,7 @@ public class EmpleadoTest {
     @Test
     public void testDevolucionCocheCliente() {
         Reserva reserva = new Reserva(null, null, null, null, 0, 0, 0, 0, null, null, null, false, null, null);
-        Vehiculo vehiculo = new Vehiculo(0, false, null, null, 0, null, null, null, null, null, null, null, false, false, null);
+        Vehiculo vehiculo = new Vehiculo(0, false, null, null, 0, null, null, null, null, null, null, null, false, false, null, null, 0);
         vehiculo.setFechaInicio(new Date());
         vehiculo.setFechaFinal(new Date());
         vehiculo.setAlquilado(true);

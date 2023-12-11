@@ -6,4 +6,5 @@ module Project1 {
 
 	requires itextpdf;
 	requires java.desktop;
+	requires org.junit.jupiter.api;
 }

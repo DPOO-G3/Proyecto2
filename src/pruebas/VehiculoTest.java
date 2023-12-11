@@ -20,7 +20,7 @@ public class VehiculoTest {
         Sede sede = new Sede(null,null,null, null, null, null);
         Date fechaInicio = new Date();
         Date fechaFinal = new Date();
-        vehiculo = new Vehiculo(1, false, sede, "SedeInicial", 5, "ABC123", "Modelo1", "Rojo", "Automático", categoria, fechaInicio, fechaFinal, true, true, "ruta/imagen.jpg");
+        vehiculo = new Vehiculo(1, false, sede, "SedeInicial", 5, "ABC123", "Modelo1", "Rojo", "Automático", categoria, fechaInicio, fechaFinal, true, true, "ruta/imagen.jpg", null, 0);
     }
 
     @Test

@@ -2,6 +2,7 @@ package logica;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.function.BooleanSupplier;
 
 public class Vehiculo {
 	private int idVehiculo;
@@ -163,6 +164,13 @@ public class Vehiculo {
 	
 	public boolean isFuncional() {
 		return funcional;
+	}
+
+
+
+	public Boolean isConSeguro() {
+		// TODO Auto-generated method stub
+		return conSeguro;
 	}
 		
 }
